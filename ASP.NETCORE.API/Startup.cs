@@ -44,6 +44,8 @@ namespace ASP.NETCORE.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }

@@ -1,71 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8" />
     <title>FrontEnd</title>
 </head>
 <body onload="LoadBlogs();">
-    <p>Пример веб-API на основе руководства MS <a href="https://docs.microsoft.com/ru-ru/ef/core/get-started/aspnetcore/existing-db">Начало работы с EF Core в ASP.NET Core с существующей базой данных</a></p>
-    <p id="blogsDiv"></p>
+<p>Пример веб-API на основе руководства MS <a href="https://docs.microsoft.com/ru-ru/ef/core/get-started/aspnetcore/existing-db">Начало работы с EF Core в ASP.NET Core с существующей базой данных</a></p>
+<p id="blogsDiv"></p>
 
-    <!-- <div>
-        <select id="deleteDiv"></select>
-        <button onclick="DeleteBlog();">Delete</button>
-    </div> -->
+<!-- <div>
+    <select id="deleteDiv"></select>
+    <button onclick="DeleteBlog();">Delete</button>
+</div> -->
 
-    <!-- <br />
-    <div>
-        <form>
-            <input id="createDiv" type="text" />
-        </form>
-        <button onclick="CreateBlog()">Create</button>
-    </div> -->
+<!-- <br />
+<div>
+    <form>
+        <input id="createDiv" type="text" />
+    </form>
+    <button onclick="CreateBlog()">Create</button>
+</div> -->
 
-    <!-- <p>Simple text</p> -->
+<!-- <p>Simple text</p> -->
 
-    <script>
-        // function DeleteBlog() {
-        //     var request = new XMLHttpRequest();
-        //     select = document.getElementById("deleteDiv");
-        //     id = select.options[select.selectedIndex].value;
-        //     url = "/api/blogsapi/" + id;
-        //     request.open("DELETE", url, false);
-        //     request.send();
-        // }
+<script>
+    // function DeleteBlog() {
+    //     var request = new XMLHttpRequest();
+    //     select = document.getElementById("deleteDiv");
+    //     id = select.options[select.selectedIndex].value;
+    //     url = "/api/blogsapi/" + id;
+    //     request.open("DELETE", url, false);
+    //     request.send();
+    // }
 
-        // function CreateBlog() {
-        //     urlText = document.getElementById("createDiv").value;
+    // function CreateBlog() {
+    //     urlText = document.getElementById("createDiv").value;
 
-        //     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-        //     xmlhttp.open("POST", "/api/blogsapi/");
-        //     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        //     xmlhttp.send(JSON.stringify({ url: urlText }));
-        // }
+    //     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+    //     xmlhttp.open("POST", "/api/blogsapi/");
+    //     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    //     xmlhttp.send(JSON.stringify({ url: urlText }));
+    // }
 
-        function LoadBlogs() {
-            var myObj, i, j, x, x2 = "";
-            var request = new XMLHttpRequest();
-            request.open("GET", "/api/Tours/", false);
-            request.send();
+    function LoadBlogs() {
+        var myObj, i, j, x, x2 = "";
+        var request = new XMLHttpRequest();
+        request.open("GET", "/api/Tours/", false);
+        request.send();
 
-            myObj = JSON.parse(request.responseText);
-            var x = "";
-            for (i in myObj) {
-                x += "<h3>" + myObj[i].tourId + "| Время вылета: " + (new Date(myObj[i].tourArrivalDate)) + "<br>" 
+        myObj = JSON.parse(request.responseText);
+        var x = "";
+        for (i in myObj) {
+            x += "<h3>" + myObj[i].tourId + "| Время вылета: " + (new Date(myObj[i].tourArrivalDate)) + "<br>" 
                 + "Время прилета: " + (new Date(myObj[i].tourDepartureDate))  + "<br>"
                 + "Стоимость: " + myObj[i].tourCost + "</h3>";
-                // for (j in myObj[i].post) {
-                //     x += myObj[i].post[j].content + "<br>";
-                // }
-            }
-            document.getElementById("blogsDiv").innerHTML = x;
-
-            for (i in myObj) {
-                x2 += "<option value=" + myObj[i].blogId + ">" + myObj[i].blogId + "</option>";
-            }
-
-            document.getElementById("deleteDiv").innerHTML = x2;
+            // for (j in myObj[i].post) {
+            //     x += myObj[i].post[j].content + "<br>";
+            // }
         }
-        window.setInterval(LoadBlogs, 5000);
-    </script>
+        document.getElementById("blogsDiv").innerHTML = x;
+
+        for (i in myObj) {
+            x2 += "<option value=" + myObj[i].blogId + ">" + myObj[i].blogId + "</option>";
+        }
+
+        document.getElementById("deleteDiv").innerHTML = x2;
+    }
+    window.setInterval(LoadBlogs, 5000);
+</script>
 </body>
 </html>
