@@ -1,20 +1,30 @@
-// function DeleteBlog() {
-    //     var request = new XMLHttpRequest();
-    //     select = document.getElementById("deleteDiv");
-    //     id = select.options[select.selectedIndex].value;
-    //     url = "/api/blogsapi/" + id;
-    //     request.open("DELETE", url, false);
-    //     request.send();
-    // }
+    function DeleteTour(id) {
+        var request = new XMLHttpRequest();
+        url = "/api/ToursFull/" + id;
+        request.open("DELETE", url, false);
+        request.send();
+        LoadBlogs();
+    }
 
-    // function CreateBlog() {
-    //     urlText = document.getElementById("createDiv").value;
+     function CreateTour() {
+         urlText = document.getElementById("createDiv").value;
+         urlText = document.getElementById("createDiv").value;
+         urlText = document.getElementById("createDiv").value;
+         urlText = document.getElementById("createDiv").value;
+         urlText = document.getElementById("createDiv").value;
+         urlText = document.getElementById("createDiv").value;
+         urlText = document.getElementById("createDiv").value;
+         urlText = document.getElementById("createDiv").value;
+         urlText = document.getElementById("createDiv").value;
+         urlText = document.getElementById("createDiv").value;
+         urlText = document.getElementById("createDiv").value;
+         urlText = document.getElementById("createDiv").value;
 
-    //     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-    //     xmlhttp.open("POST", "/api/blogsapi/");
-    //     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    //     xmlhttp.send(JSON.stringify({ url: urlText }));
-    // }
+         var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+         xmlhttp.open("POST", "/api/blogsapi/");
+         xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+         xmlhttp.send(JSON.stringify({ url: urlText }));
+     }
 
     function LoadBlogs() {
         var myObj, i, j, x, x2 = "";
@@ -60,11 +70,13 @@
             x += "</div>";
             x += "<div class=\"mt-auto p-2 bd-highlight ml-auto\">";
 
-            x += "<div class=\"btn-group\">";
-            x +="<button class=\"btn btn-outline-primary dropdown-toggle\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Действия</button>";
-            x += "<div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">"
-            x += "<a class=\"dropdown-item\" href=\"#\">Редактировать</a>"
-            x += "<a class=\"dropdown-item\" href=\"#\">Удалить</a>"
+            x += "<div class=\"dropdown\">";
+            x +="<button class=\"btn btn-outline-primary dropdown-toggle\" type=\"button\" id=\"dropdownMenu2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Действия</button>";
+            x += "<div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu2\">"
+            x += "<button class=\"dropdown-item\" type=\"button\" data-toggle=\"modal\" data-target=\"#exampleModal\">Редактировать</button>";
+            x += "<button class=\"dropdown-item\" type=\"button\" onclick=\"DeleteTour(" +
+                myObj[i].tourId +
+                ");\">Удалить</button>";
             x += "</div>";
             x += "</div>";
 
@@ -84,4 +96,4 @@
 
         //document.getElementById("deleteDiv").innerHTML = x2;
     }
-    //window.setInterval(LoadBlogs, 5000);
+    window.setInterval(LoadBlogs, 5000);
