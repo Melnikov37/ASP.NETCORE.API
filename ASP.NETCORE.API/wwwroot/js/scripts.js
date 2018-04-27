@@ -3,30 +3,43 @@
         url = "/api/ToursFull/" + id;
         request.open("DELETE", url, false);
         request.send();
-        LoadBlogs();
+        LoadTours();
     }
 
      function CreateTour() {
-         urlText = document.getElementById("createDiv").value;
-         urlText = document.getElementById("createDiv").value;
-         urlText = document.getElementById("createDiv").value;
-         urlText = document.getElementById("createDiv").value;
-         urlText = document.getElementById("createDiv").value;
-         urlText = document.getElementById("createDiv").value;
-         urlText = document.getElementById("createDiv").value;
-         urlText = document.getElementById("createDiv").value;
-         urlText = document.getElementById("createDiv").value;
-         urlText = document.getElementById("createDiv").value;
-         urlText = document.getElementById("createDiv").value;
-         urlText = document.getElementById("createDiv").value;
-
+         hotelName = document.getElementById("inputHotelName").value;
+         arrivalDate = document.getElementById("inputArrivalDate").value;
+         departureDate = document.getElementById("inputDepartureDate").value;
+         cost = document.getElementById("inputCost").value;
+         numberTransactions = document.getElementById("inputNumberTransactions").value;
+         destinationId = document.getElementById("inputDestinationId").value;
+         operatorId = document.getElementById("inputOperatorId").value;
+         transportId = document.getElementById("inputTransportId").value;
+         numberPersons = document.getElementById("inputNumberPersons").value;
+         
          var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-         xmlhttp.open("POST", "/api/blogsapi/");
+         xmlhttp.open("POST", "/api/tours/");
          xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-         xmlhttp.send(JSON.stringify({ url: urlText }));
+         xmlhttp.send(JSON.stringify(
+             {
+                 tourArrivalDate: arrivalDate,
+                 tourDepartureDate: departureDate,
+                 tourCost: cost,
+                 tourNumberTransactions: numberTransactions,
+                 touristDestinationId: destinationId,
+                 tourOperatorId: operatorId,
+                 transportId: transportId,
+                 tourNumberPersons: numberPersons,
+                 tourOperator: null,
+                 touristDestination: null,
+                 transport: null,
+                 deals: []
+             }
+         ));
+         LoadTours();
      }
 
-    function LoadBlogs() {
+function LoadTours() {
         var myObj, i, j, x, x2 = "";
         var request = new XMLHttpRequest();
         request.open("GET", "/api/ToursFull/", false);
@@ -96,4 +109,4 @@
 
         //document.getElementById("deleteDiv").innerHTML = x2;
     }
-    window.setInterval(LoadBlogs, 5000);
+window.setInterval(LoadTours, 5000);
