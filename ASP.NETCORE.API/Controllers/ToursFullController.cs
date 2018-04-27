@@ -26,8 +26,14 @@ namespace ASP.NETCORE.API.Controllers
         {
             return _context.Tours
                 .Include(t => t.TouristDestination)
-                .Include(t => t.Transport)
-                .Include(t => t.TourOperator).ToList();
+                    .ThenInclude(td => td.PlaceDestination)
+                .Include(t => t.TouristDestination) 
+                    .ThenInclude(pd => pd.Photo)
+                .Include(t => t.TouristDestination)
+                    .ThenInclude(pd => pd.Food)
+                .Include(t => t.TouristDestination)
+                    .ThenInclude(pd => pd.Room)
+                .ToList();
         }
 
         // GET: api/ToursFull/5
