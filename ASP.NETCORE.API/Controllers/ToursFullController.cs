@@ -33,6 +33,8 @@ namespace ASP.NETCORE.API.Controllers
                     .ThenInclude(pd => pd.Food)
                 .Include(t => t.TouristDestination)
                     .ThenInclude(pd => pd.Room)
+                .Include(t => t.Transport)
+                .Include(t => t.TourOperator)
                 .ToList();
         }
 
@@ -45,7 +47,16 @@ namespace ASP.NETCORE.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var tours = await _context.Tours.SingleOrDefaultAsync(m => m.TourId == id);
+            var tours = await _context.Tours.Include(t => t.TouristDestination)
+                .ThenInclude(td => td.PlaceDestination)
+                .Include(t => t.TouristDestination)
+                .ThenInclude(pd => pd.Photo)
+                .Include(t => t.TouristDestination)
+                .ThenInclude(pd => pd.Food)
+                .Include(t => t.TouristDestination)
+                .ThenInclude(pd => pd.Room)
+                .Include(t => t.Transport)
+                .Include(t => t.TourOperator).SingleOrDefaultAsync(m => m.TourId == id);
 
             if (tours == null)
             {

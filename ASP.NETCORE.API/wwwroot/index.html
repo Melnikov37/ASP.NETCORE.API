@@ -12,83 +12,61 @@
 
 </div>
 
-<body onload="LoadBlogs();">
+<body onload="LoadTours();">
     <div class="container">
-
-        <p>Пример веб-API на основе руководства MS
-            <a href="https://docs.microsoft.com/ru-ru/ef/core/get-started/aspnetcore/existing-db">Начало работы с EF Core в ASP.NET Core с существующей базой данных</a>
-        </p>
+        <div class="d-flex bd-highlight search">
+            <div class="p-2 flex-grow-1 bd-highlight .">
+                <input type="text" class="form-control" name="name" placeholder="Страна город или отель">
+            </div>
+            <div class="p-2 flex-grow-0 bd-highlight">
+                <select id="inputState" class="form-control">
+                    <option selected>12 мая</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="p-2 flex-grow-0 bd-highlight">
+                <select id="inputState" class="form-control">
+                    <option selected>7 ночей</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="p-2 flex-grow-0 bd-highlight">
+                <select id="inputState" class="form-control">
+                    <option selected>2 взрослых</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="p-2 flex-grow-1 bd-highlight">
+                <select id="inputState" class="form-control">
+                    <option selected>из Москвы</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="p-2 bd-highlight ml-auto">
+                <button type="button" class="btn btn-primary">Найти</button>
+            </div>
+        </div>
         <div id="blogsDiv">
+        </div>
 
-        </div>
-        
-
-        <div class="row tour border-top">
-            <div class="col">
-                <img class="img-thumbnail" src="https://s-ec.bstatic.com/images/hotel/max1024x768/169/16997782.jpg" width="100%" height="100%">
-            </div>
-            <div class="col">
-                <h4>Kupeli Palace 3*</h4>
-                <span class="icon star"> </span>
-                <span class="icon star"></span>
-                <span class="icon star"></span>
-                <br>
-                <img src="https://png.icons8.com/material/50/000000/worldwide-location.png" width="18px" height="18px">
-                <span class="sity">Стамбул</span>
-                <h3 class="cost">30300 руб</h3>
-                <br>
-                <button type="button" class="btn btn-outline-primary btn-block">Просмотреть</button>
-            </div>
-            <div class="col tour_info">
-                <div class="align-middle d-flex flex-column bd-highlight mb-3" style="height: 100%;">
-                    <div class="p-2 bd-highlight">
-                        <img src="https://png.icons8.com/android/50/000000/room.png" width="18px" height="18px">
-                        Вид номера: <span>Studio</span>
-                    </div>
-                    <div class="p-2 bd-highlight">
-                        <img src="https://png.icons8.com/android/50/000000/restaurant.png" width="18px" height="18px">
-                        Вид питания: <span>RO</span>
-                    </div>
-                    <div class="mt-auto p-2 bd-highlight ml-auto">
-                        <div class="btn-group">
-                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Действия
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Редактировать</a>
-                                <a class="dropdown-item" href="#">Удалить</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row tour border-top">
-            <div class="col">
-                1 of 3
-            </div>
-            <div class="col">
-                2 of 3
-            </div>
-            <div class="col tour_info">
-                3 of 3
-            </div>
-        </div>
         <!-- <div>
-    <select id="deleteDiv"></select>
-    <button onclick="DeleteBlog();">Delete</button>
-</div> -->
+        <select id="deleteDiv"></select>
+        <button onclick="DeleteBlog();">Delete</button>
+    </div> -->
 
         <!-- <br />
-<div>
-    <form>
-        <input id="createDiv" type="text" />
-    </form>
-    <button onclick="CreateBlog()">Create</button>
-</div> -->
+    <div>
+        <form>
+            <input id="createDiv" type="text" />
+        </form>
+        <button onclick="CreateBlog()">Create</button>
+    </div> -->
 
         <!-- <p>Simple text</p> -->
         <br>
+        <button type="button" class="btn btn-primary justify-content-end" data-toggle="modal" data-target="#exampleModal" onclick="LoadTouristDestinations(); LoadTuorOperator(); LoadTransports();">
+            Добавить тур
+        </button>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-end">
                 <li class="page-item">
@@ -114,6 +92,53 @@
                 </li>
             </ul>
         </nav>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Добавить тур</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group" id="selectTouristDestinations">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputArrivalDate">Дата выезда</label>
+                                <input type="text" class="form-control" id="inputArrivalDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDepartureDate">Дата приезда</label>
+                                <input type="text" class="form-control" id="inputDepartureDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCost">Цена</label>
+                                <input type="text" class="form-control" id="inputCost">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNumberTransactions">Кол-во туров</label>
+                                <input type="text" class="form-control" id="inputNumberTransactions">
+                            </div>
+                            <div class="form-group" id="selectOperatorId">
+                            </div>
+                            <div class="form-group" id="selectTransportId">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNumberPersons">Кол-во мест</label>
+                                <input type="text" class="form-control" id="inputNumberPersons">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="CreateTour()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
