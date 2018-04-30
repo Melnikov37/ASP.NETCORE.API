@@ -5,10 +5,10 @@ namespace ASP.NETCORE.API.Models
 {
     public partial class TouristDestinations
     {
-        public TouristDestinations()
-        {
-            Tours = new HashSet<Tours>();
-        }
+        //public TouristDestinations()
+        //{
+        //    Tours = new HashSet<Tours>();
+        //}
 
         public int TouristDestinationId { get; set; }
         public string HotelName { get; set; }
@@ -22,6 +22,6 @@ namespace ASP.NETCORE.API.Models
         public Photos Photo { get; set; }
         public PlaceDestinations PlaceDestination { get; set; }
         public Rooms Room { get; set; }
-        public ICollection<Tours> Tours { get; set; }
+        //public ICollection<Tours> Tours { get; set; }
     }
 }

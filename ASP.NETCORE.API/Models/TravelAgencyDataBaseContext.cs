@@ -166,26 +166,26 @@ namespace ASP.NETCORE.API.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Food)
-                    .WithMany(p => p.TouristDestinations)
-                    .HasForeignKey(d => d.FoodId)
-                    .HasConstraintName("FK_Tourist_destination_Food");
+                //entity.HasOne(d => d.Food)
+                //    .WithMany(p => p.TouristDestinations)
+                //    .HasForeignKey(d => d.FoodId)
+                //    .HasConstraintName("FK_Tourist_destination_Food");
 
-                entity.HasOne(d => d.Photo)
-                    .WithMany(p => p.TouristDestinations)
-                    .HasForeignKey(d => d.PhotoId)
-                    .HasConstraintName("FK_Tourist_destination_Photo");
+                //entity.HasOne(d => d.Photo)
+                //    .WithMany(p => p.TouristDestinations)
+                //    .HasForeignKey(d => d.PhotoId)
+                //    .HasConstraintName("FK_Tourist_destination_Photo");
 
-                entity.HasOne(d => d.PlaceDestination)
-                    .WithMany(p => p.TouristDestinations)
-                    .HasForeignKey(d => d.PlaceDestinationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Tourist_destination_Place_destination");
+                //entity.HasOne(d => d.PlaceDestination)
+                //    .WithMany(p => p.TouristDestinations)
+                //    .HasForeignKey(d => d.PlaceDestinationId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_Tourist_destination_Place_destination");
 
-                entity.HasOne(d => d.Room)
-                    .WithMany(p => p.TouristDestinations)
-                    .HasForeignKey(d => d.RoomId)
-                    .HasConstraintName("FK_Tourist_destination_Room");
+                //entity.HasOne(d => d.Room)
+                //    .WithMany(p => p.TouristDestinations)
+                //    .HasForeignKey(d => d.RoomId)
+                //    .HasConstraintName("FK_Tourist_destination_Room");
             });
 
             modelBuilder.Entity<TourOperators>(entity =>
@@ -206,20 +206,20 @@ namespace ASP.NETCORE.API.Models
 
                 entity.Property(e => e.TourDepartureDate).HasColumnType("date");
 
-                entity.HasOne(d => d.TourOperator)
-                    .WithMany(p => p.Tours)
-                    .HasForeignKey(d => d.TourOperatorId)
-                    .HasConstraintName("FK_Tour_Tour_operator");
+                //entity.HasOne(d => d.TourOperator)
+                //    .WithMany(p => p.Tours)
+                //    .HasForeignKey(d => d.TourOperatorId)
+                //    .HasConstraintName("FK_Tour_Tour_operator");
 
-                entity.HasOne(d => d.TouristDestination)
-                    .WithMany(p => p.Tours)
-                    .HasForeignKey(d => d.TouristDestinationId)
-                    .HasConstraintName("FK_Tour_Tourist_destination");
+                //entity.HasOne(d => d.TouristDestination)
+                //    .WithMany(p => p.Tours)
+                //    .HasForeignKey(d => d.TouristDestinationId)
+                //    .HasConstraintName("FK_Tour_Tourist_destination");
 
-                entity.HasOne(d => d.Transport)
-                    .WithMany(p => p.Tours)
-                    .HasForeignKey(d => d.TransportId)
-                    .HasConstraintName("FK_Tour_Transport");
+                //entity.HasOne(d => d.Transport)
+                //    .WithMany(p => p.Tours)
+                //    .HasForeignKey(d => d.TransportId)
+                //    .HasConstraintName("FK_Tour_Transport");
             });
 
             modelBuilder.Entity<Transports>(entity =>
