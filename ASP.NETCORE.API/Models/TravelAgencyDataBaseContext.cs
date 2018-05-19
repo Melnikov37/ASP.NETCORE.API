@@ -1,10 +1,12 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ASP.NETCORE.API.Models
 {
-    public partial class TravelAgencyDataBaseContext : DbContext
+    public partial class TravelAgencyDataBaseContext : IdentityDbContext<User>
     {
         public virtual DbSet<ClientProfile> ClientProfile { get; set; }
         public virtual DbSet<Conditions> Conditions { get; set; }
@@ -25,6 +27,7 @@ namespace ASP.NETCORE.API.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ClientProfile>(entity =>
             {
                 entity.Property(e => e.Id)

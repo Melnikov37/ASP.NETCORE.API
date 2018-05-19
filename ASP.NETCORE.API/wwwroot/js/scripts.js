@@ -16,7 +16,19 @@ function CreateTour() {
     transportId = document.getElementById("inputTransportId").value;
     numberPersons = document.getElementById("inputNumberPersons").value;
 
-    var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onload = function(ev) {
+        var msg = "";
+        alert(xmlhttp.status);
+        if (xmlhttp.status == 404) {
+            msg = "У вас не хватает прав для добавления";
+        } else if (xmlhttp.status == 201) {
+            msg = "Запись добавлена";
+        } else {
+            msg = "Неизвестная ошибка";
+        }
+        document.getElementById("msgAdd").innerHTML = msg;
+    };
     xmlhttp.open("POST", "/api/tours/");
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xmlhttp.send(JSON.stringify({
@@ -138,14 +150,14 @@ function LoadTouristDestinations(selectID) {
 }
 function ButtonEdit(tourID) {
     var tour = tourID;
-    document.getElementById("saveButtom").onclick = function () {
+    document.getElementById("saveButtom").onclick = function() {
         EditTour(tour);
-    }
+    };
 }
 function ButtonAdd() {
     document.getElementById("saveButtom").onclick = function() {
         CreateTour();
-    }
+    };
 }
 function LoadTour(tourID) {
     var request = new XMLHttpRequest();
@@ -226,5 +238,165 @@ function LoadTours() {
         x += "</div>";
     }
     document.getElementById("blogsDiv").innerHTML = x;
+}
+
+function Login() {
+    // Считывание данных с формы
+    email = document.getElementById("EmailLogin").value;
+    password = document.getElementById("PasswordLogin").value;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "/api/Account/Login");
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF8");
+    xmlhttp.onreadystatechange = function () {
+        // Очистка контейнера вывода сообщений
+        document.getElementById("msgLogin").innerHTML = "";
+        var mydiv = document.getElementById('formErrorLogin');
+        while (mydiv.firstChild) {
+            mydiv.removeChild(mydiv.firstChild);
+        }
+        // Обработка ответа от сервера
+        myObj = JSON.parse(this.responseText);
+        document.getElementById("msgLogin").innerHTML = myObj.message;
+        LogMenu(email);
+        // Вывод сообщений об ошибках
+        if (typeof myObj.error !== "undefined" && myObj.error.length > 0) {
+            for (var i = 0; i < myObj.error.length; i++) {
+                var ul = document.getElementsByTagName("ul");
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(myObj.error[i]));
+                ul[0].appendChild(li);
+            }
+        }
+        document.getElementById("Password").value = "";
+    };
+
+    xmlhttp.send(JSON.stringify({
+        email: email,
+        password: password
+    }));
+    GetCurrentUser();
+};
+
+function Register() {
+    // Считывание данных с формы
+    email = document.getElementById("Email").value;
+    password = document.getElementById("Password").value;
+    passwordConfirm = document.getElementById("PasswordConfirm").value;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "/api/account/Register");
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF8");
+    xmlhttp.onload = function () {
+        // Очистка контейнера вывода сообщений
+        document.getElementById("msg").innerHTML = "";
+        alert(xmlhttp.readyState);
+        alert(xmlhttp.responseText);
+        var mydiv = document.getElementById('formError');
+        while (mydiv.firstChild) {
+            mydiv.removeChild(mydiv.firstChild);
+        }
+        // Обработка ответа от сервера
+        myObj = JSON.parse(this.responseText);
+        document.getElementById("msg").innerHTML = myObj.message;
+        // Вывод сообщений об ошибках
+        if (myObj.error.length > 0) {
+            for (var i = 0; i < myObj.error.length; i++) {
+                var ul = document.getElementsByTagName("ul");
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(myObj.error[i]));
+                ul[0].appendChild(li);
+            }
+        }
+        // Очистка полей поролей
+        document.getElementById("PasswordLogin").value = "";
+        document.getElementById("PasswordConfirm").value = "";
+        $('#registerModal').modal('hide');
+    };
+    // Запрос на сервер
+    xmlhttp.send(JSON.stringify({
+        email: email,
+        password: password,
+        passwordConfirm: passwordConfirm
+    }));
+    GetCurrentUser();
+
+    $("#registerModal").on("hidden", function () {
+        $('#result').html('yes,result');
+    });
+};
+
+function LoginOff() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "api/Account/LogOff", true);
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState === XMLHttpRequest.DONE) {
+            if (xmlhttp.responseText != "") {
+                alert(xmlhttp.responseText);
+                GetCurrentUser();
+            }
+        }
+    };
+    xmlhttp.send();
+}
+
+function GetCurrentUser() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "/api/Account/isAuthenticated", true);
+    xmlhttp.onload = function() {
+        alert(xmlhttp.readyState);
+        if (xmlhttp.responseText != "") {
+            alert(xmlhttp.responseText);
+            AutenXmlHTTP = JSON.parse(xmlhttp.responseText);
+            SetStatus(AutenXmlHTTP.boolen, AutenXmlHTTP.name);
+        }
+    };
+    xmlhttp.send();
+}
+
+function SetStatus(status, name) {
+    if (status === false) {
+        UnLogMenu();
+    }
+    if (status === true) {
+        LogMenu(name);
+    }
+}
+
+function UnLogMenu() {
+    var html = "";
+    html += "<div class=\"d-flex flex-row bd-highlight\">";
+    html += "<div class=\"p-2 bd-highlight\">";
+    html += "Вы гость!";
+    html += "</div>";
+    html += "<div class=\"p-2 bd-highlight\">";
+    html += "<button type=\"button\" class=\"btn btn-block\" data-toggle=\"modal\" data-target=\"#registerModal\" style=\"background-color: #FFFF00;\">Зарегистрироваться</button>";
+    html += "</div>";
+    html += "<div class=\"p-2 bd-highlight\">";
+    html +=
+        "<button type=\"button\" class=\"btn btn-block\" data-toggle=\"modal\" data-target=\"#loginModal\" style=\"background-color: #FFFF00;\">Войти</button>";
+    html += "</div>";
+    html += "</div>";
+    document.getElementById("login").innerHTML = html;
+    document.getElementById("registerBtn").addEventListener("click", Register);
+    document.getElementById("loginBtn").addEventListener("click", Login);
+}
+
+function LogMenu(name) {
+    var html = "";
+    html += "<div class=\"btn-group\" role=\"group\">";
+    html +=
+        "<button id=\"btnGroupDrop1\" type=\"button\" class=\"btn btn-light dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">";
+    html += "<span class=\"navbar-toggler-icon\"></span>";
+    html += "</button>";
+    html += "<div class=\"dropdown-menu\" aria-labelledby=\"btnGroupDrop1\">";
+    html += "<img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJeSURBVGhD7drfa45hHMfxx49N1NRSFKUm/8B25sDIgYgIpeYApZxJlJId4IScmTWhlFIK+dVaa0hrObMxP1KM4QglP/IjI7P3tzl6+lj3fT3Xve+l+dTrYPV0P5+7nntd3+u6SxEzDRtxEb14ittoQSP+iazHa/wewxVUI9nsxjBU+XIPcRdd2IbJSCIrkfUmlEuYAtdMxQuognnshWs2QBXL6x2q4JZbUMVCrIJLZuIXVKkQx+CSZVCFQnXCJfaAqkKhBuAS+ymoQqFewSXHoQqFcruRw1CFQj2ASzZDFQrl9rDPRcx/vwfhkoV4D1UqxBG4ZD9UoVB34JLYD/sgXLILqlCofrhkEVShUEfhEpvs7OegSuX1FfPhluX4AFUujx1wzwL8gCqYhdtPSuUmVMksGpBMQpcrfUgqtgnxEqrsWNYguayDKvs3tq+VbM5DlS73HXVINluhipdrR9I5AVW83HUkG3twf0IVVw5hNtwzHfaA25HBPYTu/z7GSazGuO7UL8Y5fIYqVgkb1NpgQ1thWQEbflSB2GyEvoCoC8l5uAr1hUX7hj2YhIpix2VvoL5kPF3GDATF9naHoC7s4RpyHwjNQYw5I7Z9yJVWqAt5+4QaZE6sEbYIS5A5lRxuFm0TMkddIBUT80Zibk7HthaZY7O0uog3G9xsrM4c29mws291MQ9PsAVBsTWWLdG/QF28aB9xFra8j/K+Si2acBrPUNTz8xYdaIaNCvbKVKGxgaoe9l7WTtjxwhnYsttm8Rvogb2vdR/P8ejP392wz5zCAWzHUszC/4ymVBoBFDNEae17I/kAAAAASUVORK5CYII=\" width=\"23px\" height=\"23px\">";
+    html += "<span>" + name + "</span>";
+    html += "<a class=\"dropdown-item\" href=\"#\">Мой аккаунт</a>";
+    html += "<a class=\"dropdown-item\" href=\"#\">Мои записи</a>";
+    html += "<a id=\"login-off\"class=\"dropdown-item\" href=\"#\">Выйти</a>";
+    html += "</div>";
+    html += "</div>";
+    document.getElementById("login").innerHTML = html;
+    document.getElementById("login-off").addEventListener("click",
+        LoginOff);
 }
 window.setInterval(LoadTours, 5000);

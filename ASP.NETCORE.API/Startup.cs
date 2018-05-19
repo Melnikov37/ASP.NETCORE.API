@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ASP.NETCORE.API.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace ASP.NETCORE.API
@@ -29,7 +30,8 @@ namespace ASP.NETCORE.API
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
-            var connection = @"Server=localhost\SQLEXPRESS;Database=TravelAgencyDataBase;Trusted_Connection=True;ConnectRetryCount=0";
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<TravelAgencyDataBaseContext>();
+            var connection = @"Server=localhost\SQLEXPRESS;Database=TravelAgencyDataBaseAuth;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<TravelAgencyDataBaseContext>(options => options.UseSqlServer(connection));
         }
 
@@ -40,7 +42,7 @@ namespace ASP.NETCORE.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseAuthentication();
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseMvc();
