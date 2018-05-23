@@ -241,32 +241,33 @@ function LoadTours() {
 }
 
 function Login() {
-    // Считывание данных с формы
     email = document.getElementById("EmailLogin").value;
     password = document.getElementById("PasswordLogin").value;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "/api/Account/Login");
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF8");
-    xmlhttp.onreadystatechange = function () {
-        // Очистка контейнера вывода сообщений
-        document.getElementById("msgLogin").innerHTML = "";
-        var mydiv = document.getElementById('formErrorLogin');
-        while (mydiv.firstChild) {
-            mydiv.removeChild(mydiv.firstChild);
-        }
-        // Обработка ответа от сервера
+    document.getElementById("msgLogin").innerHTML = "";
+    document.getElementById('formErrorLogin').innerHTML = "";
+    xmlhttp.onload = function () {
         myObj = JSON.parse(this.responseText);
-        document.getElementById("msgLogin").innerHTML = myObj.message;
-        LogMenu(email);
-        // Вывод сообщений об ошибках
-        if (typeof myObj.error !== "undefined" && myObj.error.length > 0) {
-            for (var i = 0; i < myObj.error.length; i++) {
-                var ul = document.getElementsByTagName("ul");
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(myObj.error[i]));
-                ul[0].appendChild(li);
+        if (myObj.error == undefined) {
+            $('#loginModal').modal('hide');
+            document.getElementById("msg").innerHTML = "";
+            document.getElementById('formError').innerHTML = "";
+            document.getElementById('Email').innerHTML = "";
+            GetCurrentUser();
+        } else {
+            if (typeof myObj.error !== "undefined" && myObj.error.length > 0) {
+                for (var i = 0; i < myObj.error.length; i++) {
+                    var ul = document.getElementsByTagName("ul");
+                    var li = document.createElement("li");
+                    li.appendChild(document.createTextNode(myObj.error[i]));
+                    ul[0].appendChild(li);
+                }
             }
         }
+
+        document.getElementById("msgLogin").innerHTML = myObj.message;
         document.getElementById("Password").value = "";
     };
 
@@ -278,38 +279,39 @@ function Login() {
 };
 
 function Register() {
-    // Считывание данных с формы
     email = document.getElementById("Email").value;
     password = document.getElementById("Password").value;
     passwordConfirm = document.getElementById("PasswordConfirm").value;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "/api/account/Register");
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF8");
+    document.getElementById("msg").innerHTML = "";
+    document.getElementById('formError').innerHTML = "";
     xmlhttp.onload = function () {
-        // Очистка контейнера вывода сообщений
-        document.getElementById("msg").innerHTML = "";
-        alert(xmlhttp.readyState);
-        alert(xmlhttp.responseText);
-        var mydiv = document.getElementById('formError');
-        while (mydiv.firstChild) {
-            mydiv.removeChild(mydiv.firstChild);
-        }
-        // Обработка ответа от сервера
         myObj = JSON.parse(this.responseText);
-        document.getElementById("msg").innerHTML = myObj.message;
-        // Вывод сообщений об ошибках
-        if (myObj.error.length > 0) {
-            for (var i = 0; i < myObj.error.length; i++) {
-                var ul = document.getElementsByTagName("ul");
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(myObj.error[i]));
-                ul[0].appendChild(li);
+        if (myObj.error == undefined) {
+            $('#registerModal').modal('hide');
+            document.getElementById("msg").innerHTML = "";
+            document.getElementById('formError').innerHTML = "";
+            document.getElementById('Email').innerHTML = "";
+            GetCurrentUser();
+        } else {
+            var mydiv = document.getElementById('formError');
+            while (mydiv.firstChild) {
+                mydiv.removeChild(mydiv.firstChild);
+            }
+            if (myObj.error.length > 0) {
+                for (var i = 0; i < myObj.error.length; i++) {
+                    var ul = document.getElementsByTagName("ul");
+                    var li = document.createElement("li");
+                    li.appendChild(document.createTextNode(myObj.error[i]));
+                    ul[0].appendChild(li);
+                }
             }
         }
-        // Очистка полей поролей
-        document.getElementById("PasswordLogin").value = "";
+        document.getElementById("msg").innerHTML = myObj.message;
+        document.getElementById("Password").value = "";
         document.getElementById("PasswordConfirm").value = "";
-        $('#registerModal').modal('hide');
     };
     // Запрос на сервер
     xmlhttp.send(JSON.stringify({
@@ -317,23 +319,13 @@ function Register() {
         password: password,
         passwordConfirm: passwordConfirm
     }));
-    GetCurrentUser();
-
-    $("#registerModal").on("hidden", function () {
-        $('#result').html('yes,result');
-    });
 };
 
 function LoginOff() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "api/Account/LogOff", true);
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState === XMLHttpRequest.DONE) {
-            if (xmlhttp.responseText != "") {
-                alert(xmlhttp.responseText);
+    xmlhttp.onload = function() {
                 GetCurrentUser();
-            }
-        }
     };
     xmlhttp.send();
 }
@@ -342,12 +334,8 @@ function GetCurrentUser() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "/api/Account/isAuthenticated", true);
     xmlhttp.onload = function() {
-        alert(xmlhttp.readyState);
-        if (xmlhttp.responseText != "") {
-            alert(xmlhttp.responseText);
             AutenXmlHTTP = JSON.parse(xmlhttp.responseText);
             SetStatus(AutenXmlHTTP.boolen, AutenXmlHTTP.name);
-        }
     };
     xmlhttp.send();
 }
@@ -365,14 +353,11 @@ function UnLogMenu() {
     var html = "";
     html += "<div class=\"d-flex flex-row bd-highlight\">";
     html += "<div class=\"p-2 bd-highlight\">";
-    html += "Вы гость!";
-    html += "</div>";
-    html += "<div class=\"p-2 bd-highlight\">";
-    html += "<button type=\"button\" class=\"btn btn-block\" data-toggle=\"modal\" data-target=\"#registerModal\" style=\"background-color: #FFFF00;\">Зарегистрироваться</button>";
+    html += "<button type=\"button\" class=\"btn btn-block\" data-toggle=\"modal\" data-target=\"#registerModal\" style=\"background-color: #FFFF00;\"><img src=\"https://png.icons8.com/ultraviolet/50/000000/add-user-male.png\" weight=\"22px\" height=\"22px\">Зарегистрироваться</button>";
     html += "</div>";
     html += "<div class=\"p-2 bd-highlight\">";
     html +=
-        "<button type=\"button\" class=\"btn btn-block\" data-toggle=\"modal\" data-target=\"#loginModal\" style=\"background-color: #FFFF00;\">Войти</button>";
+        "<button type=\"button\" class=\"btn btn-block\" data-toggle=\"modal\" data-target=\"#loginModal\" style=\"background-color: #FFFF00;\"><img src=\"https://png.icons8.com/ultraviolet/50/000000/enter-2.png\" weight=\"22px\" height=\"22px\">Войти</button>";
     html += "</div>";
     html += "</div>";
     document.getElementById("login").innerHTML = html;
@@ -383,8 +368,7 @@ function UnLogMenu() {
 function LogMenu(name) {
     var html = "";
     html += "<div class=\"btn-group\" role=\"group\">";
-    html +=
-        "<button id=\"btnGroupDrop1\" type=\"button\" class=\"btn btn-light dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">";
+    html += "<button id=\"btnGroupDrop1\" type=\"button\" class=\"btn btn-light dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"  style=\"background-color: #FFFF00;\">";
     html += "<span class=\"navbar-toggler-icon\"></span>";
     html += "</button>";
     html += "<div class=\"dropdown-menu\" aria-labelledby=\"btnGroupDrop1\">";

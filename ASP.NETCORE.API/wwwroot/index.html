@@ -9,196 +9,200 @@
           crossorigin="anonymous">
 </head>
 <body onload="LoadTours();GetCurrentUser();">
-    <nav class="navbar" style="background-color: #FF8C00;">
-        <a class="navbar-brand">Багира тур</a>
-        <form class="form-inline">
-            <div id="login">
+    
+    <div class="container">
+        <nav class="navbar navbar-light" style="background-color: #07d9c7;">
+<b>            
+    <a class="navbar-brand"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAUZSURBVGhD7dlliHRVHMfxtcVGUbE7wUZRbBQTC0FfKIqJDQYqIjZ2K3ZiK+oLFbsLA4wXdncndv4+d+Y8z+W6z7rrzBbOD77sPXfnzt5z/nnO9vXUU089/S+0ZNg/XBHuDPeG68PRYbUwkGYLu4RLwx3h7nB1OCQsF0ZES4f7w1/h1XB5OLHNeeHh8Ht4JewcJgtFM4Uzwk/ho3BdODl49oLwVPgj+H4LNWzaPfwQbg4Drfrc4bDwbXgwzBkWDib3RtgqTBH604LhlvB9WMONbmu78GuwyoPV/OGJ4OVfD4+EmcO/iRXPDR+EwXx+0OK3v4Q9q9E/tXjYKRwfrg1PhtvCVeGywNW44o3hmiAu/P78cGRYPdRdkKYOLwWu2DUJ5FtblxO0WDg1vBO8JL4MJnJ4MOm3gvt/hs/a1/DcAe2frCQuWO2IMGMo2j58HqaqRh1qleBFBDlxlxsCNyuT4DbbBKtIs4aHwtfhnuD3ZWIy1PthkVDEou77LknABGiWwJprVaMOdWZ4LgjOQ4MgtOr+2DdB1po2FPHpF9sI3JKlZLhnwzSBa70Wpg9Fvl8KLlaTAVnC5PcNHeuFwM/VCu6xQZgjMLk/VvdtFpE6WWB2N6K7gixnwqxEVppVTq9GE+X5l4NM92m4KTweTggdyer91sYXzhNI4Xs6NH33nPBhmK8atfRe2DGcFW53o61NArdZqhpNFEt/Ebjyx8FnLFhHkv+ZWUDO4EYkRgRnM8evHdzfqBq1ZEKeXzXIWCp5XY+Fi1qXEyTYvbzvXz5wS9bsSF6aj3KFooODwlbXlEEMXFyNJmqHICmoBw8EqbauLcLPobhhke/fo3XZt1+QsjvSXMFq1mV1miu7W1DFZau6rgwSg2QgwzWLqQAXd/quurixxEI+c1Drsrvi5ye1LisJ0HdDc7Xd5+tbB24phfeXRrmW4ljXM4ElirpSR5oS6Je0LiupH1Jy3f1oy6Avmy6sHMRK8zOk72LNyatRS6zk/rDquKB4FfF9rUZTGj8vpIJr998M/WneYJIlewlwSaMZN13XxsFKS81LBC6zbKhLpfYy0u56Qc/FkpOSai4xkGZRLRp28f2vgsAVkBq7phTQ+1qXVcH8JOxajfqXPcxRYYWgOTX5EZFdoMqsdTnGjZqWCVKuukIrBq6zQDXqXzKhDuDtwHojJj1S6WzXdKMtq/9oYDEvpkprHJ8PA+m04LtYRnIYUdlDaNvrqVHKNAm7QcVUA/ldmNQ+pkjbb+Jd3UQNRfV9tRTLv7etRi2p3FKzvfpAMunmxmpUpKcSMyry3m10rFqTC8O4kDZG2y5LCXRuhQPDj6HeCY9ZLRoEvaJYD9KSDBTPMS8tiIwk27CEtLlQ0DtJp6xU33+POemX9FpqhWyjenthBc9PGy4updUYk9LBquQ6WvsFWaqpvYLWpLQbY0ZS4krB3toeXU/kZZtttb7rlGBLPJQDvBHRhsHqioH/gtZcH2Z3p7aY7KjIH143rP8f2SzsE5yEiBkHCTpbjWERi28enOj7nO1tPfs5Q7Zhs/E6O4x63Gk9bFe1/6wlXTsvE2v27E7lncZzX7h2CKhTKMemninP1hdjVKRQ6pi9kC7AaiuoRazBKqwjhbNWvXVhEZZZpxqNsqRv/wexeXL6Mq7lvMxB3rHVaJxr06CoDut/psj5rjac/DTu9j0n9Q6uaajPDloOFMrhsZ/G3b7n8M+ZMA312Z566qmnca2+vr8BP15Q2wJ3e4oAAAAASUVORK5CYII=">Багира тур</a>
+</b>
+            <form class="form-inline">
+                <div id="login">
+                </div>
+            </form>
+        </nav>
+        <div class="d-flex bd-highlight search">
+            <div class="p-2 flex-grow-1 bd-highlight .">
+                <input type="text" class="form-control" name="name" placeholder="Страна город или отель">
             </div>
-        </form>
-    </nav>
-<div class="container">
-
-    <div class="d-flex bd-highlight search">
-        <div class="p-2 flex-grow-1 bd-highlight .">
-            <input type="text" class="form-control" name="name" placeholder="Страна город или отель">
-        </div>
-        <div class="p-2 flex-grow-0 bd-highlight">
-            <!-- <select id="inputState" class="form-control">
+            <div class="p-2 flex-grow-0 bd-highlight">
+                <!-- <select id="inputState" class="form-control">
                 <option selected>12 мая</option>
                 <option>...</option>
             </select> -->
-            <input class="form-control" type="date">
+                <input class="form-control" type="date">
+            </div>
+            <div class="p-2 flex-grow-0 bd-highlight">
+                <select id="inputState" class="form-control">
+                    <option selected>7 ночей</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="p-2 flex-grow-0 bd-highlight">
+                <select id="inputState" class="form-control">
+                    <option selected>2 взрослых</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="p-2 flex-grow-1 bd-highlight">
+                <select id="inputState" class="form-control">
+                    <option selected>из Москвы</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="p-2 bd-highlight ml-auto">
+                <button type="button" class="btn btn-primary">Найти</button>
+            </div>
         </div>
-        <div class="p-2 flex-grow-0 bd-highlight">
-            <select id="inputState" class="form-control">
-                <option selected>7 ночей</option>
-                <option>...</option>
-            </select>
+        <div id="blogsDiv">
         </div>
-        <div class="p-2 flex-grow-0 bd-highlight">
-            <select id="inputState" class="form-control">
-                <option selected>2 взрослых</option>
-                <option>...</option>
-            </select>
-        </div>
-        <div class="p-2 flex-grow-1 bd-highlight">
-            <select id="inputState" class="form-control">
-                <option selected>из Москвы</option>
-                <option>...</option>
-            </select>
-        </div>
-        <div class="p-2 bd-highlight ml-auto">
-            <button type="button" class="btn btn-primary">Найти</button>
-        </div>
-    </div>
-    <div id="blogsDiv">
-    </div>
 
-    <!-- <div>
+        <!-- <div>
         <select id="deleteDiv"></select>
         <button onclick="DeleteBlog();">Delete</button>
     </div> -->
-    <!-- <br />
+        <!-- <br />
     <div>
         <form>
             <input id="createDiv" type="text" />
         </form>
         <button onclick="CreateBlog()">Create</button>
     </div> -->
-    <!-- <p>Simple text</p> -->
-    <br>
-    <button type="button" class="btn btn-primary justify-content-end" data-toggle="modal" data-target="#exampleModal" onclick="LoadTouristDestinations(null);LoadTuorOperator(null);LoadTransports(null);ButtonAdd();">
-        Добавить тур
-    </button>
-    <button type="button" class="btn btn-primary justify-content-end" onclick="GetCurrentUser();">
-        Проверка авторизации
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Добавить тур</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group" id="selectTouristDestinations">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputArrivalDate">Дата выезда</label>
-                            <input type="datetime-local" class="form-control" id="inputArrivalDate">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputDepartureDate">Дата приезда</label>
-                            <input type="datetime-local" class="form-control" id="inputDepartureDate">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputCost">Цена</label>
-                            <input type="text" class="form-control" id="inputCost">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputNumberTransactions">Кол-во туров</label>
-                            <input type="text" class="form-control" id="inputNumberTransactions">
-                        </div>
-                        <div class="form-group" id="selectOperatorId">
-                        </div>
-                        <div class="form-group" id="selectTransportId">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputNumberPersons">Кол-во мест</label>
-                            <input type="text" class="form-control" id="inputNumberPersons">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="saveButtom" type="button" class="btn btn-primary" onclick="CreateTour();">Save changes</button>
-                    <div id="msgAdd"></div>
+        <!-- <p>Simple text</p> -->
+        <br>
+        <button type="button" class="btn btn-primary justify-content-end" data-toggle="modal" data-target="#exampleModal" onclick="LoadTouristDestinations(null);LoadTuorOperator(null);LoadTransports(null);ButtonAdd();">
+            Добавить тур
+        </button>
+        <button type="button" class="btn btn-primary justify-content-end" onclick="GetCurrentUser();">
+            Проверка авторизации
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Добавить тур</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group" id="selectTouristDestinations">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputArrivalDate">Дата выезда</label>
+                                <input type="datetime-local" class="form-control" id="inputArrivalDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDepartureDate">Дата приезда</label>
+                                <input type="datetime-local" class="form-control" id="inputDepartureDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCost">Цена</label>
+                                <input type="text" class="form-control" id="inputCost">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNumberTransactions">Кол-во туров</label>
+                                <input type="text" class="form-control" id="inputNumberTransactions">
+                            </div>
+                            <div class="form-group" id="selectOperatorId">
+                            </div>
+                            <div class="form-group" id="selectTransportId">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNumberPersons">Кол-во мест</label>
+                                <input type="text" class="form-control" id="inputNumberPersons">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="saveButtom" type="button" class="btn btn-primary" onclick="CreateTour();">Save changes</button>
+                        <div id="msgAdd"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Регистрация нового пользователя</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="msgClass">
-                            <div id="msg"></div>
-                            <ul id="formError"></ul>
-                        </div>
-                        <div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email: </label>
-                                <input class="form-control" type="text" id="Email" name="Email" aria-describedby="emailHelp" placeholder="Enter email">
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Регистрация нового пользователя</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="msgClass">
+                                <div id="msg"></div>
+                                <ul id="formError"></ul>
                             </div>
-                        </div>
-                        <div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Пароль: </label>
-                                <input type="password" class="form-control" id="Password" name="Password" placeholder="Password">
+                            <div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email: </label>
+                                    <input class="form-control" type="text" id="Email" name="Email" aria-describedby="emailHelp" placeholder="Enter email">
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Подтверждение пароля: </label>
-                                <input type="password" class="form-control" id="PasswordConfirm" name="PasswordConfirm" placeholder="Password">
+                            <div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Пароль: </label>
+                                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Password">
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                    <button type="button" id="registerBtn" class="btn btn-primary">Регистрация</button>
+                            <div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Подтверждение пароля: </label>
+                                    <input type="password" class="form-control" id="PasswordConfirm" name="PasswordConfirm" placeholder="Password">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button type="button" id="registerBtn" class="btn btn-primary">Регистрация</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Вход для зарегистрированных пользователей</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="msgClass">
-                            <div id="msgLogin"></div>
-                            <ul id="formErrorLogin"></ul>
-                        </div>
-                        <div>
-                            <label for="">Email: </label>
-                            <br/>
-                            <input type="text" id="EmailLogin" name="EmailLogin">
-                        </div>
-                        <div>
-                            <label for="">Пароль: </label>
-                            <br/>
-                            <input type="password" id="PasswordLogin" name="PasswordLogin">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                    <button type="button" id="loginBtn" class="btn btn-primary">Войти</button>
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Вход для зарегистрированных пользователей</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="msgClass">
+                                <div id="msgLogin"></div>
+                                <ul id="formErrorLogin"></ul>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email: </label>
+                                    <input class="form-control" type="text" id="EmailLogin" name="EmailLogin" aria-describedby="emailHelp" placeholder="Enter email">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Пароль: </label>
+                                    <input type="password" class="form-control" id="PasswordLogin" name="PasswordLogin" placeholder="Password">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button type="button" id="loginBtn" class="btn btn-primary">Войти</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 <script src="js/scripts.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

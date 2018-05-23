@@ -31,8 +31,7 @@ namespace ASP.NETCORE.API.Models
                     await _signInManager.SignInAsync(user, false);
                     var msg = new
                     {
-                        message = "Добавлен новый пользователь: " + user.UserName,
-                        error = null
+                        message = "Добавлен новый пользователь: " + user.UserName
                     };
                     return Ok(msg);
                 }
