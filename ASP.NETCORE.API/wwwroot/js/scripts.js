@@ -253,18 +253,23 @@ function Login() {
         if (myObj.error == undefined) {
             $('#loginModal').modal('hide');
             document.getElementById("msg").innerHTML = "";
-            document.getElementById('formError').innerHTML = "";
+            document.getElementById('formErrorLogin').innerHTML = "";
             document.getElementById('Email').innerHTML = "";
             GetCurrentUser();
         } else {
+            document.getElementById('formErrorLogin').innerHTML = "";
+            let html = "";
+            html += "" 
+            html += "<div class=\"alert alert-danger\">";
+            html += "<ul id=\"ulErrorLog\">";
             if (typeof myObj.error !== "undefined" && myObj.error.length > 0) {
                 for (var i = 0; i < myObj.error.length; i++) {
-                    var ul = document.getElementsByTagName("ul");
-                    var li = document.createElement("li");
-                    li.appendChild(document.createTextNode(myObj.error[i]));
-                    ul[0].appendChild(li);
+                    html += "<li>"+myObj.error[i]+"</li>"
                 }
             }
+            html += "</ul>";
+            html += "</div>"
+            document.getElementById('formErrorLogin').innerHTML = html;
         }
 
         document.getElementById("msgLogin").innerHTML = myObj.message;
@@ -296,18 +301,18 @@ function Register() {
             document.getElementById('Email').innerHTML = "";
             GetCurrentUser();
         } else {
-            var mydiv = document.getElementById('formError');
-            while (mydiv.firstChild) {
-                mydiv.removeChild(mydiv.firstChild);
-            }
+            document.getElementById('formError').innerHTML = "";
+            let html = "";
+            html += "<div class=\"alert alert-danger\">";
+            html += "<ul id=\"ulErrorReg\">";
             if (myObj.error.length > 0) {
                 for (var i = 0; i < myObj.error.length; i++) {
-                    var ul = document.getElementsByTagName("ul");
-                    var li = document.createElement("li");
-                    li.appendChild(document.createTextNode(myObj.error[i]));
-                    ul[0].appendChild(li);
+                    html += "<li>"+myObj.error[i]+"</li>"
                 }
             }
+            html += "</ul>";
+            html += "</div>"
+            document.getElementById('formError').innerHTML = html;
         }
         document.getElementById("msg").innerHTML = myObj.message;
         document.getElementById("Password").value = "";

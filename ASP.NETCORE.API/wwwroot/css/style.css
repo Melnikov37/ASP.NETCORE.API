@@ -39,3 +39,71 @@
     border-bottom-left-radius: 10px;
     margin-bottom: 15px;
 }
+
+.modal-xl {
+    max-width: 1200px!important;
+}
+.tourInfoTitelText {
+    font-weight:bold;
+    color: #1E90FF;
+}
+.pad-2 {
+    padding-top: .5rem!important;
+    padding-bottom: .5rem!important;
+    padding-right: .5rem!important;
+}
+.hr-class{
+    margin-top: .2rem; 
+    margin-bottom: .2rem; 
+}
+.gradient1 {
+    font-size: 26px;
+    margin: 0.5em;
+    opacity: 0.9;
+    display: inline-block;
+    position: relative;
+    color: #000;
+    background: #fff;
+    mix-blend-mode: multiply;
+    font-weight:bold;
+}
+section.light {
+    background: #eee;
+    border-radius: 10px;
+}
+.gradient1::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: -webkit-linear-gradient(left,#23966c, #faaa54, #e23b4a, #db0768, #360670);
+    background: linear-gradient(to right,#23966c, #faaa54, #e23b4a, #db0768, #360670);
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+.opacity-text {
+    opacity: 0.5;
+}
+.small-text {
+    font-size: 13px;
+}
+.max-size-width {
+    max-width: 525px;
+}
+.cost-success {
+    padding: .1em .5rem!important;
+}
+.text-center-align {
+    text-align: center!important;
+}
+.very-small-text {
+    font-size: 11px;
+    font-weight:bold;
+}
+.leftimg {
+    float:left; /* Выравнивание по левому краю */
+    margin: 7px 7px 7px 0; /* Отступы вокруг картинки */
+}

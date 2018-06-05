@@ -2,19 +2,26 @@
 <html>
 
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>FrontEnd</title>
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-          crossorigin="anonymous">
+        crossorigin="anonymous">
 </head>
+
 <body onload="LoadTours();GetCurrentUser();">
-    
+
     <div class="container">
         <nav class="navbar navbar-light" style="background-color: #07d9c7;">
-<b>            
-    <a class="navbar-brand"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAUZSURBVGhD7dlliHRVHMfxtcVGUbE7wUZRbBQTC0FfKIqJDQYqIjZ2K3ZiK+oLFbsLA4wXdncndv4+d+Y8z+W6z7rrzBbOD77sPXfnzt5z/nnO9vXUU089/S+0ZNg/XBHuDPeG68PRYbUwkGYLu4RLwx3h7nB1OCQsF0ZES4f7w1/h1XB5OLHNeeHh8Ht4JewcJgtFM4Uzwk/ho3BdODl49oLwVPgj+H4LNWzaPfwQbg4Drfrc4bDwbXgwzBkWDib3RtgqTBH604LhlvB9WMONbmu78GuwyoPV/OGJ4OVfD4+EmcO/iRXPDR+EwXx+0OK3v4Q9q9E/tXjYKRwfrg1PhtvCVeGywNW44o3hmiAu/P78cGRYPdRdkKYOLwWu2DUJ5FtblxO0WDg1vBO8JL4MJnJ4MOm3gvt/hs/a1/DcAe2frCQuWO2IMGMo2j58HqaqRh1qleBFBDlxlxsCNyuT4DbbBKtIs4aHwtfhnuD3ZWIy1PthkVDEou77LknABGiWwJprVaMOdWZ4LgjOQ4MgtOr+2DdB1po2FPHpF9sI3JKlZLhnwzSBa70Wpg9Fvl8KLlaTAVnC5PcNHeuFwM/VCu6xQZgjMLk/VvdtFpE6WWB2N6K7gixnwqxEVppVTq9GE+X5l4NM92m4KTweTggdyer91sYXzhNI4Xs6NH33nPBhmK8atfRe2DGcFW53o61NArdZqhpNFEt/Ebjyx8FnLFhHkv+ZWUDO4EYkRgRnM8evHdzfqBq1ZEKeXzXIWCp5XY+Fi1qXEyTYvbzvXz5wS9bsSF6aj3KFooODwlbXlEEMXFyNJmqHICmoBw8EqbauLcLPobhhke/fo3XZt1+QsjvSXMFq1mV1miu7W1DFZau6rgwSg2QgwzWLqQAXd/quurixxEI+c1Drsrvi5ye1LisJ0HdDc7Xd5+tbB24phfeXRrmW4ljXM4ElirpSR5oS6Je0LiupH1Jy3f1oy6Avmy6sHMRK8zOk72LNyatRS6zk/rDquKB4FfF9rUZTGj8vpIJr998M/WneYJIlewlwSaMZN13XxsFKS81LBC6zbKhLpfYy0u56Qc/FkpOSai4xkGZRLRp28f2vgsAVkBq7phTQ+1qXVcH8JOxajfqXPcxRYYWgOTX5EZFdoMqsdTnGjZqWCVKuukIrBq6zQDXqXzKhDuDtwHojJj1S6WzXdKMtq/9oYDEvpkprHJ8PA+m04LtYRnIYUdlDaNvrqVHKNAm7QcVUA/ldmNQ+pkjbb+Jd3UQNRfV9tRTLv7etRi2p3FKzvfpAMunmxmpUpKcSMyry3m10rFqTC8O4kDZG2y5LCXRuhQPDj6HeCY9ZLRoEvaJYD9KSDBTPMS8tiIwk27CEtLlQ0DtJp6xU33+POemX9FpqhWyjenthBc9PGy4updUYk9LBquQ6WvsFWaqpvYLWpLQbY0ZS4krB3toeXU/kZZtttb7rlGBLPJQDvBHRhsHqioH/gtZcH2Z3p7aY7KjIH143rP8f2SzsE5yEiBkHCTpbjWERi28enOj7nO1tPfs5Q7Zhs/E6O4x63Gk9bFe1/6wlXTsvE2v27E7lncZzX7h2CKhTKMemninP1hdjVKRQ6pi9kC7AaiuoRazBKqwjhbNWvXVhEZZZpxqNsqRv/wexeXL6Mq7lvMxB3rHVaJxr06CoDut/psj5rjac/DTu9j0n9Q6uaajPDloOFMrhsZ/G3b7n8M+ZMA312Z566qmnca2+vr8BP15Q2wJ3e4oAAAAASUVORK5CYII=">Багира тур</a>
-</b>
+            <b>
+                <a class="navbar-brand">
+                    <section class="light">
+                        <h6 class="gradient1">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAUZSURBVGhD7dlliHRVHMfxtcVGUbE7wUZRbBQTC0FfKIqJDQYqIjZ2K3ZiK+oLFbsLA4wXdncndv4+d+Y8z+W6z7rrzBbOD77sPXfnzt5z/nnO9vXUU089/S+0ZNg/XBHuDPeG68PRYbUwkGYLu4RLwx3h7nB1OCQsF0ZES4f7w1/h1XB5OLHNeeHh8Ht4JewcJgtFM4Uzwk/ho3BdODl49oLwVPgj+H4LNWzaPfwQbg4Drfrc4bDwbXgwzBkWDib3RtgqTBH604LhlvB9WMONbmu78GuwyoPV/OGJ4OVfD4+EmcO/iRXPDR+EwXx+0OK3v4Q9q9E/tXjYKRwfrg1PhtvCVeGywNW44o3hmiAu/P78cGRYPdRdkKYOLwWu2DUJ5FtblxO0WDg1vBO8JL4MJnJ4MOm3gvt/hs/a1/DcAe2frCQuWO2IMGMo2j58HqaqRh1qleBFBDlxlxsCNyuT4DbbBKtIs4aHwtfhnuD3ZWIy1PthkVDEou77LknABGiWwJprVaMOdWZ4LgjOQ4MgtOr+2DdB1po2FPHpF9sI3JKlZLhnwzSBa70Wpg9Fvl8KLlaTAVnC5PcNHeuFwM/VCu6xQZgjMLk/VvdtFpE6WWB2N6K7gixnwqxEVppVTq9GE+X5l4NM92m4KTweTggdyer91sYXzhNI4Xs6NH33nPBhmK8atfRe2DGcFW53o61NArdZqhpNFEt/Ebjyx8FnLFhHkv+ZWUDO4EYkRgRnM8evHdzfqBq1ZEKeXzXIWCp5XY+Fi1qXEyTYvbzvXz5wS9bsSF6aj3KFooODwlbXlEEMXFyNJmqHICmoBw8EqbauLcLPobhhke/fo3XZt1+QsjvSXMFq1mV1miu7W1DFZau6rgwSg2QgwzWLqQAXd/quurixxEI+c1Drsrvi5ye1LisJ0HdDc7Xd5+tbB24phfeXRrmW4ljXM4ElirpSR5oS6Je0LiupH1Jy3f1oy6Avmy6sHMRK8zOk72LNyatRS6zk/rDquKB4FfF9rUZTGj8vpIJr998M/WneYJIlewlwSaMZN13XxsFKS81LBC6zbKhLpfYy0u56Qc/FkpOSai4xkGZRLRp28f2vgsAVkBq7phTQ+1qXVcH8JOxajfqXPcxRYYWgOTX5EZFdoMqsdTnGjZqWCVKuukIrBq6zQDXqXzKhDuDtwHojJj1S6WzXdKMtq/9oYDEvpkprHJ8PA+m04LtYRnIYUdlDaNvrqVHKNAm7QcVUA/ldmNQ+pkjbb+Jd3UQNRfV9tRTLv7etRi2p3FKzvfpAMunmxmpUpKcSMyry3m10rFqTC8O4kDZG2y5LCXRuhQPDj6HeCY9ZLRoEvaJYD9KSDBTPMS8tiIwk27CEtLlQ0DtJp6xU33+POemX9FpqhWyjenthBc9PGy4updUYk9LBquQ6WvsFWaqpvYLWpLQbY0ZS4krB3toeXU/kZZtttb7rlGBLPJQDvBHRhsHqioH/gtZcH2Z3p7aY7KjIH143rP8f2SzsE5yEiBkHCTpbjWERi28enOj7nO1tPfs5Q7Zhs/E6O4x63Gk9bFe1/6wlXTsvE2v27E7lncZzX7h2CKhTKMemninP1hdjVKRQ6pi9kC7AaiuoRazBKqwjhbNWvXVhEZZZpxqNsqRv/wexeXL6Mq7lvMxB3rHVaJxr06CoDut/psj5rjac/DTu9j0n9Q6uaajPDloOFMrhsZ/G3b7n8M+ZMA312Z566qmnca2+vr8BP15Q2wJ3e4oAAAAASUVORK5CYII=">Багира тур
+                        </h6>
+                    </section>
+                </a>
+            </b>
             <form class="form-inline">
                 <div id="login">
                 </div>
@@ -26,9 +33,9 @@
             </div>
             <div class="p-2 flex-grow-0 bd-highlight">
                 <!-- <select id="inputState" class="form-control">
-                <option selected>12 мая</option>
-                <option>...</option>
-            </select> -->
+            <option selected>12 мая</option>
+            <option>...</option>
+        </select> -->
                 <input class="form-control" type="date">
             </div>
             <div class="p-2 flex-grow-0 bd-highlight">
@@ -57,16 +64,16 @@
         </div>
 
         <!-- <div>
-        <select id="deleteDiv"></select>
-        <button onclick="DeleteBlog();">Delete</button>
-    </div> -->
+    <select id="deleteDiv"></select>
+    <button onclick="DeleteBlog();">Delete</button>
+</div> -->
         <!-- <br />
-    <div>
-        <form>
-            <input id="createDiv" type="text" />
-        </form>
-        <button onclick="CreateBlog()">Create</button>
-    </div> -->
+<div>
+    <form>
+        <input id="createDiv" type="text" />
+    </form>
+    <button onclick="CreateBlog()">Create</button>
+</div> -->
         <!-- <p>Simple text</p> -->
         <br>
         <button type="button" class="btn btn-primary justify-content-end" data-toggle="modal" data-target="#exampleModal" onclick="LoadTouristDestinations(null);LoadTuorOperator(null);LoadTransports(null);ButtonAdd();">
@@ -75,7 +82,7 @@
         <button type="button" class="btn btn-primary justify-content-end" onclick="GetCurrentUser();">
             Проверка авторизации
         </button>
-        <!-- Modal -->
+        <!-- Модальное окно - добавление и редактирование -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -123,6 +130,7 @@
                 </div>
             </div>
         </div>
+        <!--Модальное окно регистации-->
         <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -136,7 +144,7 @@
                         <form>
                             <div class="msgClass">
                                 <div id="msg"></div>
-                                <ul id="formError"></ul>
+                                <div id="formError"></div>
                             </div>
                             <div>
                                 <div class="form-group">
@@ -165,7 +173,7 @@
                 </div>
             </div>
         </div>
-
+        <!--Модальное окно входа-->
         <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -179,7 +187,7 @@
                         <form>
                             <div class="msgClass">
                                 <div id="msgLogin"></div>
-                                <ul id="formErrorLogin"></ul>
+                                <div id="formErrorLogin"></div>
                             </div>
                             <div>
                                 <div class="form-group">
@@ -202,13 +210,245 @@
                 </div>
             </div>
         </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tourInfoModal">
+            Launch demo modal
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="tourInfoModal" tabindex="-1" role="dialog" aria-labelledby="tourInfoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="d-flex flex-column bd-highlight">
+                            <div class="bd-highlight">
+                                <h5 class="modal-title">Hotel name
+                                    <span class="icon star"></span>
+                                    <span class="icon star"></span>
+                                    <span class="icon star"></span>
+                                    <span class="icon star"></span>
+                                </h5>
+                            </div>
+                            <div class="bd-highlight">
+                                <span>
+                                    <img src="https://png.icons8.com/office/40/000000/turkey.png" width="22px" height="22px"> Турция</span>
+                            </div>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex bd-highlight">
+                            <div class="p-2 bd-highlight">
+                                <div id="photo-div">
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                        </ol>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img class="d-block" src="https://умныетуристы.рф/upload/iblock/e71/Saphir%204.jpg" width="350px" height="250px" alt="First slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img class="d-block" src="https://ejourney.ru/files/img/2013/01/samye_dorogie_oteli_turcii.jpg" width="350px" height="250px"
+                                                    alt="Second slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img class="d-block" src="http://ezdili-znaem.com/wp-content/uploads/2014/06/luchshiye-oteli-turcii-750-750x300.jpg?x26250"
+                                                    width="350px" height="250px" alt="Third slide">
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Предыдущее</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Cледующее</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="rating-div">
+                                    <h5>Рейтинг отеля 7.2</h5>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="72" aria-valuemin="0"
+                                            aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-2 flex-grow-1 bd-highlight">
+                                <div class="d-flex bd-highlight">
+                                    <div class="pad-2 bd-highlight">
+                                        <div class="card max-size-width">
+                                            <div class="card-header">
+                                                <span>
+                                                    <img src="https://png.icons8.com/ios/40/000000/marker.png" width="22px" height="22px"> Турция
+                                                    <span class="opacity-text">, вылет из Москвы</span>
+                                                </span>
+                                                <hr class="hr-class">
+                                                <span>
+                                                    <img src="https://png.icons8.com/ios/40/000000/calendar.png" width="22px" height="22px"> на 3 ночи, с 26 по 29 мая</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">
+                                                    <img src="https://png.icons8.com/ios/40/000000/user.png" width="22px" width="22px" height="22px" height="22px"> двухмесный номер</p>
+                                                <p class="card-text">
+                                                    <img src="https://png.icons8.com/ios/40/000000/restaurant.png" width="22px" width="22px"> питание: BB</p>
+                                                <p class="card-text">
+                                                    <img src="https://png.icons8.com/ios/40/000000/empty-bed.png" width="22px" width="22px"> номера: Studio</p>
+                                                <p class="card-text">
+                                                    <img src="https://png.icons8.com/dotty/40/000000/money.png" width="22px" width="22px"> В стоимость тура включено: авиаперелёт, трансфер, услуги гида, проживание,
+                                                    питание, медицинская страховка</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 flex-grow-1 bd-highlight">
+                                        <div class="alert alert-success cost-success" role="alert">
+                                            <span class="small-text">
+                                                <img src="https://png.icons8.com/material/40/000000/checked.png" width="16px" width="16px"> Цена проверена онлайн</span>
+                                        </div>
+                                        <p class="text-center-align">Цена тура:</p>
+                                        <h3 class="text-center-align">28 234 руб.</h3>
+                                        <p class="text-center-align very-small-text">Цена с учетом топл. сбора</p>
+                                    </div>
+                                </div>
+                                <ul class="nav nav-tabs" id="tourTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="hotelInfo-tab" data-toggle="tab" href="#hotelInfo" role="tab" aria-controls="hotelInfo" aria-selected="true">Описание отеля</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="services-tab" data-toggle="tab" href="#services" role="tab" aria-controls="services" aria-selected="false">Услуги</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map" aria-selected="false">Карта</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="tourTabContent">
+                                    <div class="tab-pane fade show active" id="hotelInfo" role="tabpanel" aria-labelledby="hotelInfo-tab">
+                                        <p>
+                                            <span class="tourInfoTitelText">Сайт отеля: </span>http://otelprize.com/
+                                            <br>
+                                            <span class="tourInfoTitelText">Телефоны: </span>(90 242) 8249493
+                                            <br>
+                                            <span class="tourInfoTitelText">Факс: </span>(90 242) 8248890
+                                            <br>
+                                            <span class="tourInfoTitelText">Email: </span>info@otelasia.com
+                                            <br>
+                                            <span class="tourInfoTitelText">Количество номеров: </span>68
+                                            <br>
+                                            <span class="tourInfoTitelText">Расстояние до аэропорта: </span>37 км
+                                        </p>
+                                        <hr>
+                                        <p>
+                                            Отель Sunside Beach – прекрасное место для экономных туристов. Он предоставляет минимум услуг по демократичным ценам. Так
+                                            что если вы не планируете целый день просиживать в номере, а собираетесь посетить
+                                            разные интересные места Турции, то такой вариант проживания вам наверняка подойдет.
+                                        </p>
+                                    </div>
+                                    <div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
+                                        <div class="d-flex bd-highlight">
+                                            <div class="p-2 flex-sm-fill bd-highlight">
+                                                <h6>
+                                                    <img src="https://png.icons8.com/metro/40/000000/wifi.png" class="img-thumbnail" width="24px" height="24px">Интернет</h6>
+                                                <ul>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                </ul>
+                                            </div>
+                                            <div class="p-2 flex-lg-fill bd-highlight">
+                                                <h6>
+                                                    <img src="https://png.icons8.com/metro/40/000000/i-lowercase.png" class="img-thumbnail" width="24px" height="24px">Общие услуги</h6>
+                                                <ul>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex bd-highlight">
+                                            <div class="p-2 flex-sm-fill bd-highlight">
+                                                <h6>Парковка</h6>
+                                                <ul>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                </ul>
+                                            </div>
+                                            <div class="p-2 flex-lg-fill bd-highlight">
+                                                <h6>Спорт</h6>
+                                                <ul>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                    <li>asdsad</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="map" role="tabpanel" aria-labelledby="map-tab">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3277.9432727974418!2d32.41111951575722!3d34.75702178042005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14e706c49e24deaf%3A0x33a373378a2a5554!2sDaphne+Hotel+Apartments!5e0!3m2!1sru!2sru!4v1528145751936"
+                                            width="733" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-start">
+                        <div class="card w-100">
+                            <h5 class="card-header">Заявка на подбор тура</h5>
+                            <div class="card-body ">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="col-7">
+                                            <label for="nameInput">Ваше имя*</label>
+                                            <input type="text" class="form-control" id="nameInput" required>
+                                        </div>
+                                        <div class="col">
+                                            <label for="emailInput">Email*</label>
+                                            <input type="text" class="form-control" id="emailInput" placeholder="name@example.ru" required>
+                                        </div>
+                                        <div class="col">
+                                            <label for="phoneInput">Телефон*</label>
+                                            <input type="text" class="form-control" id="phoneInput" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="commentFormControlTextarea">Ваш комментарий</label>
+                                        <textarea class="form-control" id="commentFormControlTextarea" placeholder="Не более 500 символов" rows="3"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <p style="font-weight:bold;"><img class="leftimg" src="https://png.icons8.com/ios/100/000000/exclamation-mark.png" width="40px" height="40px">Заявка не является бронированием. Менеджер уточнит наличие тура и свяжется с вами.</p>
+                                        </div>
+                                        <div class="d-flex col justify-content-end">
+                                                <button type="button" class="btn btn-success">Оставить заявку</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer text-muted">
+                                    <p class="small-text">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь с <a href="">политикой конфиденциальности</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-<script src="js/scripts.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <script src="js/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
         crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
 </body>
 
