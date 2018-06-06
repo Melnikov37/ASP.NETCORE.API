@@ -19,7 +19,13 @@ namespace ASP.NETCORE.API.Models
         public int? TourOperatorId { get; set; }
         public int? TransportId { get; set; }
         public int? TourNumberPersons { get; set; }
+        public int? FoodTypeId { get; set; }
+        public int? RoomTypeId { get; set; }
+        public int TourNumberPerson { get; set; }
+        public string PointDeparture { get; set; }
 
+        public FoodType FoodType { get; set; }
+        public RoomType RoomType { get; set; }
         public TourOperators TourOperator { get; set; }
         public TouristDestinations TouristDestination { get; set; }
         public Transports Transport { get; set; }

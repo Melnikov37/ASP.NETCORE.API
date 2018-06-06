@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ASP.NETCORE.API.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace ASP.NETCORE.API.Controllers
 {
@@ -84,7 +83,6 @@ namespace ASP.NETCORE.API.Controllers
 
         // POST: api/Tours
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> PostTours([FromBody] Tours tours)
         {
             if (!ModelState.IsValid)

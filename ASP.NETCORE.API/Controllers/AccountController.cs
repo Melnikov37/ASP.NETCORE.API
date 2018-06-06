@@ -82,7 +82,7 @@ namespace ASP.NETCORE.API.Models
                 else
                 {
                     ModelState.AddModelError("", "Неправильный логин и (или) пароль");
-                   
+
                     var errorMsg = new
                     {
                         message = "Вход не выполнен.",

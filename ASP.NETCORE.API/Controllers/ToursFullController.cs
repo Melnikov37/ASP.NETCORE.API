@@ -27,14 +27,12 @@ namespace ASP.NETCORE.API.Controllers
             return _context.Tours
                 .Include(t => t.TouristDestination)
                     .ThenInclude(td => td.PlaceDestination)
-                .Include(t => t.TouristDestination) 
+                .Include(t => t.TouristDestination)
                     .ThenInclude(pd => pd.Photo)
-                .Include(t => t.TouristDestination)
-                    .ThenInclude(pd => pd.Food)
-                .Include(t => t.TouristDestination)
-                    .ThenInclude(pd => pd.Room)
                 .Include(t => t.Transport)
                 .Include(t => t.TourOperator)
+                .Include(t => t.FoodType)
+                .Include(t => t.RoomType)
                 .ToList();
         }
 
@@ -47,16 +45,16 @@ namespace ASP.NETCORE.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var tours = await _context.Tours.Include(t => t.TouristDestination)
-                .ThenInclude(td => td.PlaceDestination)
+            var tours = await _context.Tours
                 .Include(t => t.TouristDestination)
-                .ThenInclude(pd => pd.Photo)
+                    .ThenInclude(td => td.PlaceDestination)
                 .Include(t => t.TouristDestination)
-                .ThenInclude(pd => pd.Food)
-                .Include(t => t.TouristDestination)
-                .ThenInclude(pd => pd.Room)
+                    .ThenInclude(pd => pd.Photo)
                 .Include(t => t.Transport)
-                .Include(t => t.TourOperator).SingleOrDefaultAsync(m => m.TourId == id);
+                .Include(t => t.TourOperator)
+                .Include(t => t.FoodType)
+                .Include(t => t.RoomType)
+                .SingleOrDefaultAsync(m => m.TourId == id);
 
             if (tours == null)
             {

@@ -24,7 +24,7 @@ namespace ASP.NETCORE.API.Controllers
         [HttpGet]
         public IEnumerable<TouristDestinations> GetTouristDestinations()
         {
-            return _context.TouristDestinations.Include(p => p.PlaceDestination).ToList();
+            return _context.TouristDestinations;
         }
 
         // GET: api/TouristDestinations/5
@@ -36,7 +36,7 @@ namespace ASP.NETCORE.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var touristDestinations = await _context.TouristDestinations.Include(p => p.PlaceDestination).SingleOrDefaultAsync(m => m.TouristDestinationId == id);
+            var touristDestinations = await _context.TouristDestinations.SingleOrDefaultAsync(m => m.TouristDestinationId == id);
 
             if (touristDestinations == null)
             {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ASP.NETCORE.API.Models
 {
-    public class User:IdentityUser
+    public class User : IdentityUser
     {
     }
 }

@@ -11,9 +11,10 @@ using System;
 namespace ASP.NETCORE.API.Migrations
 {
     [DbContext(typeof(TravelAgencyDataBaseContext))]
-    partial class TravelAgencyDataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20180606133736_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
