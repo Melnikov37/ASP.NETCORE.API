@@ -70,11 +70,11 @@ namespace ASP.NETCORE.API.Models
             {
                 entity.HasKey(e => e.BusinessSerArTourId);
 
-                entity.HasOne(d => d.BusinessSer)
-                    .WithMany(p => p.BusinessSerAtTour)
-                    .HasForeignKey(d => d.BusinessSerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_BusinessSerAtTour_BusinessSer");
+                //entity.HasOne(d => d.BusinessSer)
+                //    .WithMany(p => p.BusinessSerAtTour)
+                //    .HasForeignKey(d => d.BusinessSerId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_BusinessSerAtTour_BusinessSer");
             });
 
             modelBuilder.Entity<CleaningSer>(entity =>
@@ -87,17 +87,17 @@ namespace ASP.NETCORE.API.Models
 
             modelBuilder.Entity<CleaningSerAtTour>(entity =>
             {
-                entity.HasOne(d => d.CleaningSer)
-                    .WithMany(p => p.CleaningSerAtTour)
-                    .HasForeignKey(d => d.CleaningSerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CleaningSerAtTour_CleaningSer");
+                //entity.HasOne(d => d.CleaningSer)
+                //    .WithMany(p => p.CleaningSerAtTour)
+                //    .HasForeignKey(d => d.CleaningSerId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_CleaningSerAtTour_CleaningSer");
 
-                entity.HasOne(d => d.TouristDestination)
-                    .WithMany(p => p.CleaningSerAtTour)
-                    .HasForeignKey(d => d.TouristDestinationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CleaningSerAtTour_CleaningSerAtTour");
+                //entity.HasOne(d => d.TouristDestination)
+                //    .WithMany(p => p.CleaningSerAtTour)
+                //    .HasForeignKey(d => d.TouristDestinationId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_CleaningSerAtTour_CleaningSerAtTour");
             });
 
             modelBuilder.Entity<Conditions>(entity =>
@@ -116,17 +116,17 @@ namespace ASP.NETCORE.API.Models
 
                 entity.Property(e => e.DealConclusionDate).HasColumnType("date");
 
-                entity.HasOne(d => d.Condition)
-                    .WithMany(p => p.Deals)
-                    .HasForeignKey(d => d.ConditionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Deals_Conditions");
+                //entity.HasOne(d => d.Condition)
+                //    .WithMany(p => p.Deals)
+                //    .HasForeignKey(d => d.ConditionId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_Deals_Conditions");
 
-                entity.HasOne(d => d.Tour)
-                    .WithMany(p => p.Deals)
-                    .HasForeignKey(d => d.TourId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Deals_Tours");
+                //entity.HasOne(d => d.Tour)
+                //    .WithMany(p => p.Deals)
+                //    .HasForeignKey(d => d.TourId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_Deals_Tours");
             });
 
             modelBuilder.Entity<EntertaimentSer>(entity =>
@@ -139,17 +139,17 @@ namespace ASP.NETCORE.API.Models
 
             modelBuilder.Entity<EntertaimentSerAtTour>(entity =>
             {
-                entity.HasOne(d => d.EntertaimentSer)
-                    .WithMany(p => p.EntertaimentSerAtTour)
-                    .HasForeignKey(d => d.EntertaimentSerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_EntertaimentSerAtTour_EntertaimentSer");
+                //entity.HasOne(d => d.EntertaimentSer)
+                //    .WithMany(p => p.EntertaimentSerAtTour)
+                //    .HasForeignKey(d => d.EntertaimentSerId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_EntertaimentSerAtTour_EntertaimentSer");
 
-                entity.HasOne(d => d.TouristDestination)
-                    .WithMany(p => p.EntertaimentSerAtTour)
-                    .HasForeignKey(d => d.TouristDestinationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_EntertaimentSerAtTour_TouristDestinations");
+                //entity.HasOne(d => d.TouristDestination)
+                //    .WithMany(p => p.EntertaimentSerAtTour)
+                //    .HasForeignKey(d => d.TouristDestinationId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_EntertaimentSerAtTour_TouristDestinations");
             });
 
             modelBuilder.Entity<FoodType>(entity =>
@@ -162,17 +162,17 @@ namespace ASP.NETCORE.API.Models
 
             modelBuilder.Entity<FoodTypeAtTour>(entity =>
             {
-                entity.HasOne(d => d.FoodType)
-                    .WithMany(p => p.FoodTypeAtTour)
-                    .HasForeignKey(d => d.FoodTypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_FoodTypeAtTour_FoodType");
+                //entity.HasOne(d => d.FoodType)
+                //    .WithMany(p => p.FoodTypeAtTour)
+                //    .HasForeignKey(d => d.FoodTypeId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_FoodTypeAtTour_FoodType");
 
-                entity.HasOne(d => d.TouristDestination)
-                    .WithMany(p => p.FoodTypeAtTour)
-                    .HasForeignKey(d => d.TouristDestinationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_FoodTypeAtTour_TouristDestinations");
+                //entity.HasOne(d => d.TouristDestination)
+                //    .WithMany(p => p.FoodTypeAtTour)
+                //    .HasForeignKey(d => d.TouristDestinationId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_FoodTypeAtTour_TouristDestinations");
             });
 
             modelBuilder.Entity<HealthAndBeautySer>(entity =>
@@ -185,17 +185,17 @@ namespace ASP.NETCORE.API.Models
 
             modelBuilder.Entity<HealthAndBeautySerAtTour>(entity =>
             {
-                entity.HasOne(d => d.HealthAndBeautySer)
-                    .WithMany(p => p.HealthAndBeautySerAtTour)
-                    .HasForeignKey(d => d.HealthAndBeautySerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_HealthAndBeautySerAtTour_HealthAndBeautySer");
+                //entity.HasOne(d => d.HealthAndBeautySer)
+                //    .WithMany(p => p.HealthAndBeautySerAtTour)
+                //    .HasForeignKey(d => d.HealthAndBeautySerId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_HealthAndBeautySerAtTour_HealthAndBeautySer");
 
-                entity.HasOne(d => d.TouristDestination)
-                    .WithMany(p => p.HealthAndBeautySerAtTour)
-                    .HasForeignKey(d => d.TouristDestinationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_HealthAndBeautySerAtTour_TouristDestinations");
+                //entity.HasOne(d => d.TouristDestination)
+                //    .WithMany(p => p.HealthAndBeautySerAtTour)
+                //    .HasForeignKey(d => d.TouristDestinationId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_HealthAndBeautySerAtTour_TouristDestinations");
             });
 
             modelBuilder.Entity<InternetSer>(entity =>
@@ -208,17 +208,17 @@ namespace ASP.NETCORE.API.Models
 
             modelBuilder.Entity<InternetSerAtTour>(entity =>
             {
-                entity.HasOne(d => d.InternetSer)
-                    .WithMany(p => p.InternetSerAtTour)
-                    .HasForeignKey(d => d.InternetSerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_InternetSerAtTour_InternetSer");
+                //entity.HasOne(d => d.InternetSer)
+                //    .WithMany(p => p.InternetSerAtTour)
+                //    .HasForeignKey(d => d.InternetSerId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_InternetSerAtTour_InternetSer");
 
-                entity.HasOne(d => d.TouristDestinations)
-                    .WithMany(p => p.InternetSerAtTour)
-                    .HasForeignKey(d => d.TouristDestinationsId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_InternetSerAtTour_TouristDestinations");
+                //entity.HasOne(d => d.TouristDestinations)
+                //    .WithMany(p => p.InternetSerAtTour)
+                //    .HasForeignKey(d => d.TouristDestinationsId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_InternetSerAtTour_TouristDestinations");
             });
 
             modelBuilder.Entity<ParkingSer>(entity =>
@@ -231,17 +231,17 @@ namespace ASP.NETCORE.API.Models
 
             modelBuilder.Entity<ParkingSerAtTour>(entity =>
             {
-                entity.HasOne(d => d.ParkingSer)
-                    .WithMany(p => p.ParkingSerAtTour)
-                    .HasForeignKey(d => d.ParkingSerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ParkingSerAtTour_ParkingSer");
+                //entity.HasOne(d => d.ParkingSer)
+                //    .WithMany(p => p.ParkingSerAtTour)
+                //    .HasForeignKey(d => d.ParkingSerId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_ParkingSerAtTour_ParkingSer");
 
-                entity.HasOne(d => d.TouristDestinations)
-                    .WithMany(p => p.ParkingSerAtTour)
-                    .HasForeignKey(d => d.TouristDestinationsId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ParkingSerAtTour_TouristDestinations");
+                //entity.HasOne(d => d.TouristDestinations)
+                //    .WithMany(p => p.ParkingSerAtTour)
+                //    .HasForeignKey(d => d.TouristDestinationsId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_ParkingSerAtTour_TouristDestinations");
             });
 
             modelBuilder.Entity<Photos>(entity =>
@@ -259,11 +259,11 @@ namespace ASP.NETCORE.API.Models
                     .HasMaxLength(400)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.TouristDestination)
-                    .WithMany(p => p.Photos)
-                    .HasForeignKey(d => d.TouristDestinationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Photos_TouristDestinations");
+                //entity.HasOne(d => d.TouristDestination)
+                //    .WithMany(p => p.Photos)
+                //    .HasForeignKey(d => d.TouristDestinationId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_Photos_TouristDestinations");
             });
 
             modelBuilder.Entity<PlaceDestinations>(entity =>
@@ -283,11 +283,11 @@ namespace ASP.NETCORE.API.Models
 
             modelBuilder.Entity<Rating>(entity =>
             {
-                entity.HasOne(d => d.TouristDestinations)
-                    .WithMany(p => p.Rating)
-                    .HasForeignKey(d => d.TouristDestinationsId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Rating_TouristDestinations");
+                //entity.HasOne(d => d.TouristDestinations)
+                //    .WithMany(p => p.Rating)
+                //    .HasForeignKey(d => d.TouristDestinationsId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_Rating_TouristDestinations");
             });
 
             modelBuilder.Entity<RestOnWaterSer>(entity =>
@@ -300,17 +300,17 @@ namespace ASP.NETCORE.API.Models
 
             modelBuilder.Entity<RestOnWaterSerAtTour>(entity =>
             {
-                entity.HasOne(d => d.RestOnWaterSer)
-                    .WithMany(p => p.RestOnWaterSerAtTour)
-                    .HasForeignKey(d => d.RestOnWaterSerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RestOnWaterSerAtTour_RestOnWaterSer");
+                //entity.HasOne(d => d.RestOnWaterSer)
+                //    .WithMany(p => p.RestOnWaterSerAtTour)
+                //    .HasForeignKey(d => d.RestOnWaterSerId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_RestOnWaterSerAtTour_RestOnWaterSer");
 
-                entity.HasOne(d => d.TouristDestination)
-                    .WithMany(p => p.RestOnWaterSerAtTour)
-                    .HasForeignKey(d => d.TouristDestinationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RestOnWaterSerAtTour_TouristDestinations");
+                //entity.HasOne(d => d.TouristDestination)
+                //    .WithMany(p => p.RestOnWaterSerAtTour)
+                //    .HasForeignKey(d => d.TouristDestinationId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_RestOnWaterSerAtTour_TouristDestinations");
             });
 
             modelBuilder.Entity<RoomFacilities>(entity =>
@@ -323,17 +323,17 @@ namespace ASP.NETCORE.API.Models
 
             modelBuilder.Entity<RoomFacilitiesAtTour>(entity =>
             {
-                entity.HasOne(d => d.RoomFacilities)
-                    .WithMany(p => p.RoomFacilitiesAtTour)
-                    .HasForeignKey(d => d.RoomFacilitiesId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RoomFacilitiesAtTour_RoomFacilities");
+                //entity.HasOne(d => d.RoomFacilities)
+                //    .WithMany(p => p.RoomFacilitiesAtTour)
+                //    .HasForeignKey(d => d.RoomFacilitiesId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_RoomFacilitiesAtTour_RoomFacilities");
 
-                entity.HasOne(d => d.TouristDestinations)
-                    .WithMany(p => p.RoomFacilitiesAtTour)
-                    .HasForeignKey(d => d.TouristDestinationsId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RoomFacilitiesAtTour_TouristDestinations");
+                //entity.HasOne(d => d.TouristDestinations)
+                //    .WithMany(p => p.RoomFacilitiesAtTour)
+                //    .HasForeignKey(d => d.TouristDestinationsId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_RoomFacilitiesAtTour_TouristDestinations");
             });
 
             modelBuilder.Entity<RoomType>(entity =>
@@ -346,17 +346,17 @@ namespace ASP.NETCORE.API.Models
 
             modelBuilder.Entity<RoomTypeAtTour>(entity =>
             {
-                entity.HasOne(d => d.RoomType)
-                    .WithMany(p => p.RoomTypeAtTour)
-                    .HasForeignKey(d => d.RoomTypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RoomTypeAtTour_RoomType");
+                //entity.HasOne(d => d.RoomType)
+                //    .WithMany(p => p.RoomTypeAtTour)
+                //    .HasForeignKey(d => d.RoomTypeId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_RoomTypeAtTour_RoomType");
 
-                entity.HasOne(d => d.TouristDestination)
-                    .WithMany(p => p.RoomTypeAtTour)
-                    .HasForeignKey(d => d.TouristDestinationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RoomTypeAtTour_TouristDestinations");
+                //entity.HasOne(d => d.TouristDestination)
+                //    .WithMany(p => p.RoomTypeAtTour)
+                //    .HasForeignKey(d => d.TouristDestinationId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_RoomTypeAtTour_TouristDestinations");
             });
 
             modelBuilder.Entity<SmokingSer>(entity =>
@@ -369,17 +369,17 @@ namespace ASP.NETCORE.API.Models
 
             modelBuilder.Entity<SmokingSerAtTour>(entity =>
             {
-                entity.HasOne(d => d.SmokingSer)
-                    .WithMany(p => p.SmokingSerAtTour)
-                    .HasForeignKey(d => d.SmokingSerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_SmokingSerAtTour_SmokingSer");
+                //entity.HasOne(d => d.SmokingSer)
+                //    .WithMany(p => p.SmokingSerAtTour)
+                //    .HasForeignKey(d => d.SmokingSerId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_SmokingSerAtTour_SmokingSer");
 
-                entity.HasOne(d => d.TouristDestination)
-                    .WithMany(p => p.SmokingSerAtTour)
-                    .HasForeignKey(d => d.TouristDestinationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_SmokingSerAtTour_TouristDestinations");
+                //entity.HasOne(d => d.TouristDestination)
+                //    .WithMany(p => p.SmokingSerAtTour)
+                //    .HasForeignKey(d => d.TouristDestinationId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_SmokingSerAtTour_TouristDestinations");
             });
 
             modelBuilder.Entity<SportSer>(entity =>
@@ -392,17 +392,17 @@ namespace ASP.NETCORE.API.Models
 
             modelBuilder.Entity<SportSerAtTour>(entity =>
             {
-                entity.HasOne(d => d.SportSer)
-                    .WithMany(p => p.SportSerAtTour)
-                    .HasForeignKey(d => d.SportSerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_SportSerAtTour_SportSer");
+                //entity.HasOne(d => d.SportSer)
+                //    .WithMany(p => p.SportSerAtTour)
+                //    .HasForeignKey(d => d.SportSerId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_SportSerAtTour_SportSer");
 
-                entity.HasOne(d => d.TouristDestinations)
-                    .WithMany(p => p.SportSerAtTour)
-                    .HasForeignKey(d => d.TouristDestinationsId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_SportSerAtTour_TouristDestinations");
+                //entity.HasOne(d => d.TouristDestinations)
+                //    .WithMany(p => p.SportSerAtTour)
+                //    .HasForeignKey(d => d.TouristDestinationsId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_SportSerAtTour_TouristDestinations");
             });
 
             modelBuilder.Entity<TouristDestinations>(entity =>
@@ -436,16 +436,16 @@ namespace ASP.NETCORE.API.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Photo)
-                    .WithMany(p => p.TouristDestinations)
-                    .HasForeignKey(d => d.PhotoId)
-                    .HasConstraintName("FK_Tourist_destination_Photo");
+                //entity.HasOne(d => d.Photo)
+                //    .WithMany(p => p.TouristDestinations)
+                //    .HasForeignKey(d => d.PhotoId)
+                //    .HasConstraintName("FK_Tourist_destination_Photo");
 
-                entity.HasOne(d => d.PlaceDestination)
-                    .WithMany(p => p.TouristDestinations)
-                    .HasForeignKey(d => d.PlaceDestinationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Tourist_destination_Place_destination");
+                //entity.HasOne(d => d.PlaceDestination)
+                //    .WithMany(p => p.TouristDestinations)
+                //    .HasForeignKey(d => d.PlaceDestinationId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_Tourist_destination_Place_destination");
 
                 entity.HasOne(d => d.TouristDestination)
                     .WithOne(p => p.InverseTouristDestination)
@@ -477,30 +477,30 @@ namespace ASP.NETCORE.API.Models
 
                 entity.Property(e => e.TourDepartureDate).HasColumnType("date");
 
-                entity.HasOne(d => d.FoodType)
-                    .WithMany(p => p.Tours)
-                    .HasForeignKey(d => d.FoodTypeId)
-                    .HasConstraintName("FK_Tours_FoodType");
+                //entity.HasOne(d => d.FoodType)
+                //    .WithMany(p => p.Tours)
+                //    .HasForeignKey(d => d.FoodTypeId)
+                //    .HasConstraintName("FK_Tours_FoodType");
 
-                entity.HasOne(d => d.RoomType)
-                    .WithMany(p => p.Tours)
-                    .HasForeignKey(d => d.RoomTypeId)
-                    .HasConstraintName("FK_Tours_RoomType");
+                //entity.HasOne(d => d.RoomType)
+                //    .WithMany(p => p.Tours)
+                //    .HasForeignKey(d => d.RoomTypeId)
+                //    .HasConstraintName("FK_Tours_RoomType");
 
-                entity.HasOne(d => d.TourOperator)
-                    .WithMany(p => p.Tours)
-                    .HasForeignKey(d => d.TourOperatorId)
-                    .HasConstraintName("FK_Tour_Tour_operator");
+                //entity.HasOne(d => d.TourOperator)
+                //    .WithMany(p => p.Tours)
+                //    .HasForeignKey(d => d.TourOperatorId)
+                //    .HasConstraintName("FK_Tour_Tour_operator");
 
-                entity.HasOne(d => d.TouristDestination)
-                    .WithMany(p => p.Tours)
-                    .HasForeignKey(d => d.TouristDestinationId)
-                    .HasConstraintName("FK_Tour_Tourist_destination");
+                //entity.HasOne(d => d.TouristDestination)
+                //    .WithMany(p => p.Tours)
+                //    .HasForeignKey(d => d.TouristDestinationId)
+                //    .HasConstraintName("FK_Tour_Tourist_destination");
 
-                entity.HasOne(d => d.Transport)
-                    .WithMany(p => p.Tours)
-                    .HasForeignKey(d => d.TransportId)
-                    .HasConstraintName("FK_Tour_Transport");
+                //entity.HasOne(d => d.Transport)
+                //    .WithMany(p => p.Tours)
+                //    .HasForeignKey(d => d.TransportId)
+                //    .HasConstraintName("FK_Tour_Transport");
             });
 
             modelBuilder.Entity<Transports>(entity =>
@@ -523,17 +523,17 @@ namespace ASP.NETCORE.API.Models
 
             modelBuilder.Entity<TransportSerAtTour>(entity =>
             {
-                entity.HasOne(d => d.TouristDestinations)
-                    .WithMany(p => p.TransportSerAtTour)
-                    .HasForeignKey(d => d.TouristDestinationsId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TransportSerAtTour_TouristDestinations");
+                //entity.HasOne(d => d.TouristDestinations)
+                //    .WithMany(p => p.TransportSerAtTour)
+                //    .HasForeignKey(d => d.TouristDestinationsId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_TransportSerAtTour_TouristDestinations");
 
-                entity.HasOne(d => d.TransportSer)
-                    .WithMany(p => p.TransportSerAtTour)
-                    .HasForeignKey(d => d.TransportSerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TransportSerAtTour_TransportSer");
+                //entity.HasOne(d => d.TransportSer)
+                //    .WithMany(p => p.TransportSerAtTour)
+                //    .HasForeignKey(d => d.TransportSerId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_TransportSerAtTour_TransportSer");
             });
         }
     }

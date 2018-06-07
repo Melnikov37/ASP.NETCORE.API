@@ -107,3 +107,13 @@ section.light {
     float:left; /* Выравнивание по левому краю */
     margin: 7px 7px 7px 0; /* Отступы вокруг картинки */
 }
+.tab-ser-tour-info {
+    padding-top: 1em;
+}
+.card-dels {
+    padding-top: 2em;
+    padding-bottom: 1em;
+}
+.rating-buttom-div {
+    padding-top: 1em;
+}

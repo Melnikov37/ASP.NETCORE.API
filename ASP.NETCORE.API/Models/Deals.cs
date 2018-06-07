@@ -5,7 +5,7 @@ namespace ASP.NETCORE.API.Models
 {
     public partial class Deals
     {
-        public int ClientId { get; set; }
+        public string ClientId { get; set; }
         public int TourId { get; set; }
         public DateTime DealConclusionDate { get; set; }
         public float? DealDiscountRate { get; set; }

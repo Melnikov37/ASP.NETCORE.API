@@ -27,39 +27,58 @@
                 </div>
             </form>
         </nav>
-        <div class="d-flex bd-highlight search">
-            <div class="p-2 flex-grow-1 bd-highlight .">
-                <input type="text" class="form-control" name="name" placeholder="Страна город или отель">
+        <form>
+            <div class="d-flex bd-highlight search">
+                <div class="p-2 flex-grow-1 bd-highlight .">
+                    <input type="text" id="hotelAndCountryAndCityNameSearch" class="form-control" name="name" placeholder="Страна город или отель">
+                </div>
+                <div class="p-2 flex-grow-0 bd-highlight">
+                    <input class="form-control" id="arrivalDateSearch" type="date">
+                </div>
+                <div class="p-2 flex-grow-0 bd-highlight">
+                    <select id="numberNightsSearch" class="form-control">
+                        <option value="0">любое</option>
+                        <option value="1 ночь">1 ночь</option>
+                        <option value="2 ночи">2 ночи</option>
+                        <option value="3 ночи">3 ночи</option>
+                        <option value="4 ночи">4 ночи</option>
+                        <option value="5 ночей">5 ночей</option>
+                        <option value="6 ночей">6 ночей</option>
+                        <option value="7 ночей" selected>7 ночей</option>
+                        <option value="8 ночей">8 ночей</option>
+                        <option value="9 ночей">9 ночей</option>
+                        <option value="10 ночей">10 ночей</option>
+                        <option value="10 ночей">11 ночей</option>
+                        <option value="12 ночей">12 ночей</option>
+                        <option value="13 ночей">13 ночей</option>
+                        <option value="14 ночей">14 ночей</option>
+                        <option value="15 ночей">15 ночей</option>
+                        <option value="16 ночей">16 ночей</option>
+                        <option value="17 ночей">17 ночей</option>
+                        <option value="18 ночей">18 ночей</option>
+                        <option value="19 ночей">19 ночей</option>
+                    </select>
+                </div>
+                <div class="p-2 flex-grow-0 bd-highlight">
+                    <select id="numberPersonSearch" class="form-control">
+                        <option value="0">любое</option>
+                        <option value="1">1 взрослый</option>
+                        <option value="2" selected>2 взрослых</option>
+                        <option value="3">3 взрослых</option>
+                    </select>
+                </div>
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <select id="pointDepartureSearch" class="form-control">
+                        <option value="Москвы" selected>из Москвы</option>
+                        <option value="0">любое</option>
+                    </select>
+                </div>
+                <div class="p-2 bd-highlight ml-auto">
+                    <button type="button" class="btn btn-primary" onclick="SearchTour();">
+                        <img src="https://png.icons8.com/ios-glyphs/100/000000/search.png" width="23px" height="23px">Найти</button>
+                </div>
             </div>
-            <div class="p-2 flex-grow-0 bd-highlight">
-                <!-- <select id="inputState" class="form-control">
-            <option selected>12 мая</option>
-            <option>...</option>
-        </select> -->
-                <input class="form-control" type="date">
-            </div>
-            <div class="p-2 flex-grow-0 bd-highlight">
-                <select id="inputState" class="form-control">
-                    <option selected>7 ночей</option>
-                    <option>...</option>
-                </select>
-            </div>
-            <div class="p-2 flex-grow-0 bd-highlight">
-                <select id="inputState" class="form-control">
-                    <option selected>2 взрослых</option>
-                    <option>...</option>
-                </select>
-            </div>
-            <div class="p-2 flex-grow-1 bd-highlight">
-                <select id="inputState" class="form-control">
-                    <option selected>из Москвы</option>
-                    <option>...</option>
-                </select>
-            </div>
-            <div class="p-2 bd-highlight ml-auto">
-                <button type="button" class="btn btn-primary">Найти</button>
-            </div>
-        </div>
+        </form>
         <div id="blogsDiv">
         </div>
 
@@ -123,8 +142,8 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id="saveButtom" type="button" class="btn btn-primary" onclick="CreateTour();">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button id="saveButtom" type="button" class="btn btn-primary" onclick="CreateTour();">Сохранить</button>
                         <div id="msgAdd"></div>
                     </div>
                 </div>
@@ -219,19 +238,7 @@
             <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <div class="d-flex flex-column bd-highlight">
-                            <div class="bd-highlight">
-                                <h5 class="modal-title">Hotel name
-                                    <span class="icon star"></span>
-                                    <span class="icon star"></span>
-                                    <span class="icon star"></span>
-                                    <span class="icon star"></span>
-                                </h5>
-                            </div>
-                            <div class="bd-highlight">
-                                <span>
-                                    <img src="https://png.icons8.com/office/40/000000/turkey.png" width="22px" height="22px"> Турция</span>
-                            </div>
+                        <div id="hotelInfoHeader">
                         </div>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -240,42 +247,21 @@
                     <div class="modal-body">
                         <div class="d-flex bd-highlight">
                             <div class="p-2 bd-highlight">
-                                <div id="photo-div">
-                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                        <ol class="carousel-indicators">
-                                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                        </ol>
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <img class="d-block" src="https://умныетуристы.рф/upload/iblock/e71/Saphir%204.jpg" width="350px" height="250px" alt="First slide">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img class="d-block" src="https://ejourney.ru/files/img/2013/01/samye_dorogie_oteli_turcii.jpg" width="350px" height="250px"
-                                                    alt="Second slide">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img class="d-block" src="http://ezdili-znaem.com/wp-content/uploads/2014/06/luchshiye-oteli-turcii-750-750x300.jpg?x26250"
-                                                    width="350px" height="250px" alt="Third slide">
-                                            </div>
-                                        </div>
-                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Предыдущее</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Cледующее</span>
-                                        </a>
+                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                    <div id="photosDiv">
                                     </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Предыдущее</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Cледующее</span>
+                                    </a>
                                 </div>
-                                <div id="rating-div">
-                                    <h5>Рейтинг отеля 7.2</h5>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="72" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
+                                <div id="ratingDiv">
+                                </div>
+                                <div class="rating-buttom-div" id="ratingButtomDiv">
                                 </div>
                             </div>
                             <div class="p-2 flex-grow-1 bd-highlight">
@@ -283,24 +269,12 @@
                                     <div class="pad-2 bd-highlight">
                                         <div class="card max-size-width">
                                             <div class="card-header">
-                                                <span>
-                                                    <img src="https://png.icons8.com/ios/40/000000/marker.png" width="22px" height="22px"> Турция
-                                                    <span class="opacity-text">, вылет из Москвы</span>
-                                                </span>
-                                                <hr class="hr-class">
-                                                <span>
-                                                    <img src="https://png.icons8.com/ios/40/000000/calendar.png" width="22px" height="22px"> на 3 ночи, с 26 по 29 мая</span>
+                                                <div id="cardHeaderTourInfo">
+                                                </div>
                                             </div>
                                             <div class="card-body">
-                                                <p class="card-text">
-                                                    <img src="https://png.icons8.com/ios/40/000000/user.png" width="22px" width="22px" height="22px" height="22px"> двухмесный номер</p>
-                                                <p class="card-text">
-                                                    <img src="https://png.icons8.com/ios/40/000000/restaurant.png" width="22px" width="22px"> питание: BB</p>
-                                                <p class="card-text">
-                                                    <img src="https://png.icons8.com/ios/40/000000/empty-bed.png" width="22px" width="22px"> номера: Studio</p>
-                                                <p class="card-text">
-                                                    <img src="https://png.icons8.com/dotty/40/000000/money.png" width="22px" width="22px"> В стоимость тура включено: авиаперелёт, трансфер, услуги гида, проживание,
-                                                    питание, медицинская страховка</p>
+                                                <div id="cardBodyTourInfo">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -310,7 +284,8 @@
                                                 <img src="https://png.icons8.com/material/40/000000/checked.png" width="16px" width="16px"> Цена проверена онлайн</span>
                                         </div>
                                         <p class="text-center-align">Цена тура:</p>
-                                        <h3 class="text-center-align">28 234 руб.</h3>
+                                        <div id="cardCostTourInfo">
+                                        </div>
                                         <p class="text-center-align very-small-text">Цена с учетом топл. сбора</p>
                                     </div>
                                 </div>
@@ -327,70 +302,11 @@
                                 </ul>
                                 <div class="tab-content" id="tourTabContent">
                                     <div class="tab-pane fade show active" id="hotelInfo" role="tabpanel" aria-labelledby="hotelInfo-tab">
-                                        <p>
-                                            <span class="tourInfoTitelText">Сайт отеля: </span>http://otelprize.com/
-                                            <br>
-                                            <span class="tourInfoTitelText">Телефоны: </span>(90 242) 8249493
-                                            <br>
-                                            <span class="tourInfoTitelText">Факс: </span>(90 242) 8248890
-                                            <br>
-                                            <span class="tourInfoTitelText">Email: </span>info@otelasia.com
-                                            <br>
-                                            <span class="tourInfoTitelText">Количество номеров: </span>68
-                                            <br>
-                                            <span class="tourInfoTitelText">Расстояние до аэропорта: </span>37 км
-                                        </p>
-                                        <hr>
-                                        <p>
-                                            Отель Sunside Beach – прекрасное место для экономных туристов. Он предоставляет минимум услуг по демократичным ценам. Так
-                                            что если вы не планируете целый день просиживать в номере, а собираетесь посетить
-                                            разные интересные места Турции, то такой вариант проживания вам наверняка подойдет.
-                                        </p>
+                                        <div id="tabTourInfo">
+                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
-                                        <div class="d-flex bd-highlight">
-                                            <div class="p-2 flex-sm-fill bd-highlight">
-                                                <h6>
-                                                    <img src="https://png.icons8.com/metro/40/000000/wifi.png" class="img-thumbnail" width="24px" height="24px">Интернет</h6>
-                                                <ul>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                </ul>
-                                            </div>
-                                            <div class="p-2 flex-lg-fill bd-highlight">
-                                                <h6>
-                                                    <img src="https://png.icons8.com/metro/40/000000/i-lowercase.png" class="img-thumbnail" width="24px" height="24px">Общие услуги</h6>
-                                                <ul>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex bd-highlight">
-                                            <div class="p-2 flex-sm-fill bd-highlight">
-                                                <h6>Парковка</h6>
-                                                <ul>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                </ul>
-                                            </div>
-                                            <div class="p-2 flex-lg-fill bd-highlight">
-                                                <h6>Спорт</h6>
-                                                <ul>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                    <li>asdsad</li>
-                                                </ul>
-                                            </div>
+                                        <div class="tab-ser-tour-info" id="tabSerTourInfo">
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="map" role="tabpanel" aria-labelledby="map-tab">
@@ -404,40 +320,49 @@
                     <div class="modal-footer justify-content-start">
                         <div class="card w-100">
                             <h5 class="card-header">Заявка на подбор тура</h5>
-                            <div class="card-body ">
-                                <form>
-                                    <div class="form-row">
-                                        <div class="col-7">
-                                            <label for="nameInput">Ваше имя*</label>
-                                            <input type="text" class="form-control" id="nameInput" required>
-                                        </div>
-                                        <div class="col">
-                                            <label for="emailInput">Email*</label>
-                                            <input type="text" class="form-control" id="emailInput" placeholder="name@example.ru" required>
-                                        </div>
-                                        <div class="col">
-                                            <label for="phoneInput">Телефон*</label>
-                                            <input type="text" class="form-control" id="phoneInput" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="commentFormControlTextarea">Ваш комментарий</label>
-                                        <textarea class="form-control" id="commentFormControlTextarea" placeholder="Не более 500 символов" rows="3"></textarea>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <p style="font-weight:bold;"><img class="leftimg" src="https://png.icons8.com/ios/100/000000/exclamation-mark.png" width="40px" height="40px">Заявка не является бронированием. Менеджер уточнит наличие тура и свяжется с вами.</p>
-                                        </div>
-                                        <div class="d-flex col justify-content-end">
-                                                <button type="button" class="btn btn-success">Оставить заявку</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="card-footer text-muted">
-                                    <p class="small-text">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь с <a href="">политикой конфиденциальности</a>.</p>
+                            <div id="delsForm">
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Просмотр заявок -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DealsModal">
+            Launch demo modal
+        </button>
+
+        <div class="modal fade bd-example-modal-lg" id="DealsModal" tabindex="-1" role="dialog" aria-labelledby="DealsModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="DealsModalLabel">Мои заявки</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="dealsListDiv">
+                            <div class="row">
+                                <div class="col">
+                                    <h6>Pineta Club Hotel</h6>
+                                </div>
+                                <div class="col">
+                                    Турция, Мармарис
+                                </div>
+                                <div class="col">
+                                    32863 руб.
+                                </div>
+                                <div class="col">
+                                    <span class="badge badge-info">Обработка</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                     </div>
                 </div>
             </div>
