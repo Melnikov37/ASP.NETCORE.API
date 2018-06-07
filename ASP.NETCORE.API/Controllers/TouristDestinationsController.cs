@@ -24,7 +24,7 @@ namespace ASP.NETCORE.API.Controllers
         [HttpGet]
         public IEnumerable<TouristDestinations> GetTouristDestinations()
         {
-            return _context.TouristDestinations;
+            return _context.TouristDestinations.Include(p => p.PlaceDestination);
         }
 
         // GET: api/TouristDestinations/5

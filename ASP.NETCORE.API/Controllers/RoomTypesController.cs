@@ -6,63 +6,61 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ASP.NETCORE.API.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace ASP.NETCORE.API.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Tours")]
-    public class ToursController : Controller
+    [Route("api/RoomTypes")]
+    public class RoomTypesController : Controller
     {
         private readonly TravelAgencyDataBaseContext _context;
 
-        public ToursController(TravelAgencyDataBaseContext context)
+        public RoomTypesController(TravelAgencyDataBaseContext context)
         {
             _context = context;
         }
 
-        // GET: api/Tours
+        // GET: api/RoomTypes
         [HttpGet]
-        public IEnumerable<Tours> GetTours()
+        public IEnumerable<RoomType> GetRoomType()
         {
-            return _context.Tours;
+            return _context.RoomType;
         }
 
-        // GET: api/Tours/5
+        // GET: api/RoomTypes/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTours([FromRoute] int id)
+        public async Task<IActionResult> GetRoomType([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tours = await _context.Tours.SingleOrDefaultAsync(m => m.TourId == id);
+            var roomType = await _context.RoomType.SingleOrDefaultAsync(m => m.RoomTypeId == id);
 
-            if (tours == null)
+            if (roomType == null)
             {
                 return NotFound();
             }
 
-            return Ok(tours);
+            return Ok(roomType);
         }
 
-        // PUT: api/Tours/5
-        [Authorize(Roles = "admin")]
+        // PUT: api/RoomTypes/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTours([FromRoute] int id, [FromBody] Tours tours)
+        public async Task<IActionResult> PutRoomType([FromRoute] int id, [FromBody] RoomType roomType)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tours.TourId)
+            if (id != roomType.RoomTypeId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(tours).State = EntityState.Modified;
+            _context.Entry(roomType).State = EntityState.Modified;
 
             try
             {
@@ -70,7 +68,7 @@ namespace ASP.NETCORE.API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ToursExists(id))
+                if (!RoomTypeExists(id))
                 {
                     return NotFound();
                 }
@@ -83,47 +81,45 @@ namespace ASP.NETCORE.API.Controllers
             return NoContent();
         }
 
-        // POST: api/Tours
-        [Authorize(Roles = "admin")]
+        // POST: api/RoomTypes
         [HttpPost]
-        public async Task<IActionResult> PostTours([FromBody] Tours tours)
+        public async Task<IActionResult> PostRoomType([FromBody] RoomType roomType)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Tours.Add(tours);
+            _context.RoomType.Add(roomType);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTours", new { id = tours.TourId }, tours);
+            return CreatedAtAction("GetRoomType", new { id = roomType.RoomTypeId }, roomType);
         }
 
-        // DELETE: api/Tours/5
-        [Authorize(Roles = "admin")]
+        // DELETE: api/RoomTypes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTours([FromRoute] int id)
+        public async Task<IActionResult> DeleteRoomType([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tours = await _context.Tours.SingleOrDefaultAsync(m => m.TourId == id);
-            if (tours == null)
+            var roomType = await _context.RoomType.SingleOrDefaultAsync(m => m.RoomTypeId == id);
+            if (roomType == null)
             {
                 return NotFound();
             }
 
-            _context.Tours.Remove(tours);
+            _context.RoomType.Remove(roomType);
             await _context.SaveChangesAsync();
 
-            return Ok(tours);
+            return Ok(roomType);
         }
 
-        private bool ToursExists(int id)
+        private bool RoomTypeExists(int id)
         {
-            return _context.Tours.Any(e => e.TourId == id);
+            return _context.RoomType.Any(e => e.RoomTypeId == id);
         }
     }
 }

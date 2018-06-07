@@ -27,8 +27,8 @@ namespace ASP.NETCORE.API.Models
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    // установка куки
                     await _signInManager.SignInAsync(user, false);
+                    await _userManager.AddToRoleAsync(user, "user");
                     var msg = new
                     {
                         message = "Добавлен новый пользователь: " + user.UserName

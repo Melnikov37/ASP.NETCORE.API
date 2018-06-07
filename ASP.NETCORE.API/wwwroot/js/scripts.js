@@ -15,6 +15,8 @@ function CreateTour() {
     operatorId = document.getElementById("inputOperatorId").value;
     transportId = document.getElementById("inputTransportId").value;
     numberPersons = document.getElementById("inputNumberPersons").value;
+    foodType = document.getElementById("inputFoodType").value;
+    roomType = document.getElementById("inputRoomType").value;
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onload = function (ev) {
@@ -39,11 +41,11 @@ function CreateTour() {
         touristDestinationId: destinationId,
         tourOperatorId: operatorId,
         transportId: transportId,
-        tourNumberPersons: numberPersons,
-        tourOperator: null,
-        touristDestination: null,
-        transport: null,
-        deals: []
+        tourNumberPersons: null,
+        foodTypeId: foodType,
+        roomTypeId: roomType,
+        tourNumberPerson: numberPersons,
+        pointDeparture: "Москвы"
     }));
     LoadTours();
 }
@@ -57,6 +59,8 @@ function EditTour(tourID) {
     operatorId = document.getElementById("inputOperatorId").value;
     transportId = document.getElementById("inputTransportId").value;
     numberPersons = document.getElementById("inputNumberPersons").value;
+    foodType = document.getElementById("inputFoodType").value;
+    roomType = document.getElementById("inputRoomType").value;
 
     var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance
     xmlhttp.open("PUT", "/api/tours/" + tourID);
@@ -70,11 +74,11 @@ function EditTour(tourID) {
         touristDestinationId: destinationId,
         tourOperatorId: operatorId,
         transportId: transportId,
-        tourNumberPersons: numberPersons,
-        tourOperator: null,
-        touristDestination: null,
-        transport: null,
-        deals: []
+        tourNumberPersons: null,
+        foodTypeId: foodType,
+        roomTypeId: roomType,
+        tourNumberPerson: numberPersons,
+        pointDeparture: "Москвы"
     }));
     LoadTours();
 }
@@ -97,6 +101,46 @@ function LoadTuorOperator(selectId) {
     }
     selectText += "</select>";
     document.getElementById("selectOperatorId").innerHTML = selectText;
+}
+
+function LoadFoodTypes(selectId) {
+    var request = new XMLHttpRequest();
+    request.open("GET", "/api/FoodTypes/", false);
+    request.send();
+
+    var myObj = JSON.parse(request.responseText);
+    var selectText = "";
+    selectText += "<label for=\"inputOperatorId\">Питание</label>";
+    selectText += "<select class=\"form-control\" name=\"operator\" id=\"inputFoodType\">";
+    for (let i = 0; i < 6; i++) {
+        if (selectId == myObj[i].foodTypeId) {
+            selectText += "<option selected value=\"" + myObj[i].foodTypeId + "\">" + myObj[i].foodTypeName + "</option>";
+        } else {
+            selectText += "<option value=\"" + myObj[i].foodTypeId + "\">" + myObj[i].foodTypeName + "</option>";
+        }
+    }
+    selectText += "</select>";
+    document.getElementById("selectFoodType").innerHTML = selectText;
+}
+
+function LoadRoomTypes(selectId) {
+    var request = new XMLHttpRequest();
+    request.open("GET", "/api/RoomTypes/", false);
+    request.send();
+
+    var myObj = JSON.parse(request.responseText);
+    var selectText = "";
+    selectText += "<label for=\"inputOperatorId\">Туроператор</label>";
+    selectText += "<select class=\"form-control\" name=\"operator\" id=\"inputRoomType\">";
+    for (i in myObj) {
+        if (selectId == myObj[i].roomTypeId) {
+            selectText += "<option selected value=\"" + myObj[i].roomTypeId + "\">" + myObj[i].roomTypeName + "</option>";
+        } else {
+            selectText += "<option value=\"" + myObj[i].roomTypeId + "\">" + myObj[i].roomTypeName + "</option>";
+        }
+    }
+    selectText += "</select>";
+    document.getElementById("selectRoomType").innerHTML = selectText;
 }
 
 function LoadTransports(selectID) {
@@ -506,11 +550,18 @@ var Months = [
 ]
 
 function LoadTour(tourID) {
-    var request = new XMLHttpRequest();
-    request.open("GET", "/api/ToursFull/" + tourID, false);
-    request.send();
-
-    var myObj = JSON.parse(request.responseText);
+    if (tourID != null) {
+        var request = new XMLHttpRequest();
+        request.open("GET", "/api/ToursFull/" + tourID, false);
+        request.send();
+        var myObj = JSON.parse(request.responseText);
+    } else {
+        tourID = 1;
+        var request = new XMLHttpRequest();
+        request.open("GET", "/api/ToursFull/" + tourID, false);
+        request.send();
+        var myObj = JSON.parse(request.responseText);
+    }
     LoadTouristDestinations(myObj.touristDestinationId);
     document.getElementById("inputArrivalDate").value = myObj.tourArrivalDate;
     document.getElementById("inputDepartureDate").value = myObj.tourDepartureDate;
@@ -518,7 +569,9 @@ function LoadTour(tourID) {
     document.getElementById("inputNumberTransactions").value = myObj.tourNumberTransactions;
     LoadTransports(myObj.transportId);
     LoadTuorOperator(myObj.tourOperatorId);
-    document.getElementById("inputNumberPersons").value = myObj.tourNumberPersons;
+    LoadFoodTypes(myObj.foodTypeId);
+    LoadRoomTypes(myObj.roomTypeId);
+    document.getElementById("inputNumberPersons").value = myObj.tourNumberPerson;
     ButtonEdit(tourID);
 }
 
@@ -648,6 +701,7 @@ function LoadTours() {
         }
     }
     document.getElementById("blogsDiv").innerHTML = x;
+    LoadTour(null);
 }
 
 function СomparingDates(otherDay) {
@@ -845,13 +899,15 @@ function CreateReting(touristDestinationsID) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "/api/Ratings/");
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.onload = function () {
+        PostRatingMenu();
+        DrawRating();
+    }
     xmlhttp.send(JSON.stringify({
         userId: NameUser,
         touristDestinationsId: touristDestinationsID,
         ratingValue: ratingValue
     }));
-    PostRatingMenu();
-    DrawRating();
 }
 
 function UnPostRatingMenu(touristDestinationsID) {
@@ -947,25 +1003,30 @@ function DealsListDraw() {
     deals = JSON.parse(request.responseText);
     var dealsListDivHTML = "";
     for (const i in deals) {
-        dealsListDivHTML += "<div class=\"row\">";
-        dealsListDivHTML += "<div class=\"col\">";
-        dealsListDivHTML += "<h6>" + deals[i].tour.touristDestination.hotelName + "</h6>";
-        dealsListDivHTML += "</div>";
-        dealsListDivHTML += "<div class=\"col\">";
-        dealsListDivHTML += deals[i].tour.touristDestination.placeDestination.country + ", " + deals[i].tour.touristDestination.placeDestination.city;
-        dealsListDivHTML += "</div>";
-        dealsListDivHTML += "<div class=\"col\">";
-        dealsListDivHTML += (deals[i].tour.tourCost * 62.0064) + " руб.";
-        dealsListDivHTML += "</div>";
-        dealsListDivHTML += "<div class=\"col\">";
-        if (deals[i].condition.conditionName == "Обработка") {
-            dealsListDivHTML += "<span class=\"badge badge-info\">" + deals[i].condition.conditionName + "</span>";
+        if (deals[i].clientId == NameUser) {
+            dealsListDivHTML += "<div class=\"row\">";
+            dealsListDivHTML += "<div class=\"col\">";
+            dealsListDivHTML += "<h6>" + deals[i].tour.touristDestination.hotelName + "</h6>";
+            dealsListDivHTML += "</div>";
+            dealsListDivHTML += "<div class=\"col\">";
+            dealsListDivHTML += deals[i].tour.touristDestination.placeDestination.country + ", " + deals[i].tour.touristDestination.placeDestination.city;
+            dealsListDivHTML += "</div>";
+            dealsListDivHTML += "<div class=\"col\">";
+            dealsListDivHTML += (deals[i].tour.tourCost * 62.0064) + " руб.";
+            dealsListDivHTML += "</div>";
+            dealsListDivHTML += "<div class=\"col\">";
+            if (deals[i].condition.conditionName == "Обработка") {
+                dealsListDivHTML += "<span class=\"badge badge-info\">" + deals[i].condition.conditionName + "</span>";
+            }
+            if (deals[i].condition.conditionName == "Одобрен") {
+                dealsListDivHTML += "<span class=\"badge badge-success\">" + deals[i].condition.conditionName + "</span>";
+            }
+            dealsListDivHTML += "</div>";
+            dealsListDivHTML += "</div>";
         }
-        if (deals[i].condition.conditionName == "Одобрен") {
-            dealsListDivHTML += "<span class=\"badge badge-success\">" + deals[i].condition.conditionName + "</span>";
-        }
-        dealsListDivHTML += "</div>";
-        dealsListDivHTML += "</div>";
+    }
+    if(dealsListDivHTML == ""){
+        dealsListDivHTML += "<h5>Заявок нет</h5>"
     }
     document.getElementById("dealsListDiv").innerHTML = dealsListDivHTML;
 }

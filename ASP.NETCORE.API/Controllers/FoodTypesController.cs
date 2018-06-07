@@ -6,63 +6,61 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ASP.NETCORE.API.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace ASP.NETCORE.API.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Tours")]
-    public class ToursController : Controller
+    [Route("api/FoodTypes")]
+    public class FoodTypesController : Controller
     {
         private readonly TravelAgencyDataBaseContext _context;
 
-        public ToursController(TravelAgencyDataBaseContext context)
+        public FoodTypesController(TravelAgencyDataBaseContext context)
         {
             _context = context;
         }
 
-        // GET: api/Tours
+        // GET: api/FoodTypes
         [HttpGet]
-        public IEnumerable<Tours> GetTours()
+        public IEnumerable<FoodType> GetFoodType()
         {
-            return _context.Tours;
+            return _context.FoodType;
         }
 
-        // GET: api/Tours/5
+        // GET: api/FoodTypes/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTours([FromRoute] int id)
+        public async Task<IActionResult> GetFoodType([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tours = await _context.Tours.SingleOrDefaultAsync(m => m.TourId == id);
+            var foodType = await _context.FoodType.SingleOrDefaultAsync(m => m.FoodTypeId == id);
 
-            if (tours == null)
+            if (foodType == null)
             {
                 return NotFound();
             }
 
-            return Ok(tours);
+            return Ok(foodType);
         }
 
-        // PUT: api/Tours/5
-        [Authorize(Roles = "admin")]
+        // PUT: api/FoodTypes/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTours([FromRoute] int id, [FromBody] Tours tours)
+        public async Task<IActionResult> PutFoodType([FromRoute] int id, [FromBody] FoodType foodType)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tours.TourId)
+            if (id != foodType.FoodTypeId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(tours).State = EntityState.Modified;
+            _context.Entry(foodType).State = EntityState.Modified;
 
             try
             {
@@ -70,7 +68,7 @@ namespace ASP.NETCORE.API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ToursExists(id))
+                if (!FoodTypeExists(id))
                 {
                     return NotFound();
                 }
@@ -83,47 +81,45 @@ namespace ASP.NETCORE.API.Controllers
             return NoContent();
         }
 
-        // POST: api/Tours
-        [Authorize(Roles = "admin")]
+        // POST: api/FoodTypes
         [HttpPost]
-        public async Task<IActionResult> PostTours([FromBody] Tours tours)
+        public async Task<IActionResult> PostFoodType([FromBody] FoodType foodType)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Tours.Add(tours);
+            _context.FoodType.Add(foodType);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTours", new { id = tours.TourId }, tours);
+            return CreatedAtAction("GetFoodType", new { id = foodType.FoodTypeId }, foodType);
         }
 
-        // DELETE: api/Tours/5
-        [Authorize(Roles = "admin")]
+        // DELETE: api/FoodTypes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTours([FromRoute] int id)
+        public async Task<IActionResult> DeleteFoodType([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var tours = await _context.Tours.SingleOrDefaultAsync(m => m.TourId == id);
-            if (tours == null)
+            var foodType = await _context.FoodType.SingleOrDefaultAsync(m => m.FoodTypeId == id);
+            if (foodType == null)
             {
                 return NotFound();
             }
 
-            _context.Tours.Remove(tours);
+            _context.FoodType.Remove(foodType);
             await _context.SaveChangesAsync();
 
-            return Ok(tours);
+            return Ok(foodType);
         }
 
-        private bool ToursExists(int id)
+        private bool FoodTypeExists(int id)
         {
-            return _context.Tours.Any(e => e.TourId == id);
+            return _context.FoodType.Any(e => e.FoodTypeId == id);
         }
     }
 }
