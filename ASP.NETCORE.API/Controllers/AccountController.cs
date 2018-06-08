@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASP.NETCORE.API.Models;
@@ -125,11 +127,14 @@ namespace ASP.NETCORE.API.Models
             var message = usr == null ? "Вы Гость. Пожалуйста, выполните вход." : "Вы вошли как: " + usr.UserName;
             bool boolen = usr != null;
             var name = usr == null ? "null" : usr.UserName;
+            IList<String> rolename = usr == null ? null : await _userManager.GetRolesAsync(usr);
+            var role = rolename == null ? null : rolename[0];
             var msg = new
             {
                 message,
                 boolen,
-                name
+                name,
+                role
             };
             return Ok(msg);
         }

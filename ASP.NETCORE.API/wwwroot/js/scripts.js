@@ -648,18 +648,19 @@ function DrawTour(myObj) {
     x += "<img src=\"https://png.icons8.com/android/50/000000/restaurant.png\" width=\"18px\" height=\"18px\">";
     x += " Вид питания: <span>" + myObj.foodType.foodTypeName + "</span>";
     x += "</div>";
+    
     x += "<div class=\"mt-auto p-2 bd-highlight ml-auto\">";
-
-    x += "<div class=\"dropdown\">";
-    x += "<button class=\"btn btn-outline-primary dropdown-toggle\" type=\"button\" id=\"dropdownMenu2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Действия</button>";
-    x += "<div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu2\">";
-    x += "<button class=\"dropdown-item\" type=\"button\" data-toggle=\"modal\" data-target=\"#exampleModal\" onclick=\"LoadTour(" + myObj.tourId + ");\">Редактировать</button>";
-    x += "<button class=\"dropdown-item\" type=\"button\" onclick=\"DeleteTour(" +
-        myObj.tourId +
-        ");\">Удалить</button>";
-    x += "</div>";
-    x += "</div>";
-
+    if(RoleUser == "admin"){
+        x += "<div class=\"dropdown\">";
+        x += "<button class=\"btn btn-outline-primary dropdown-toggle\" type=\"button\" id=\"dropdownMenu2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Действия</button>";
+        x += "<div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu2\">";
+        x += "<button class=\"dropdown-item\" type=\"button\" data-toggle=\"modal\" data-target=\"#exampleModal\" onclick=\"LoadTour(" + myObj.tourId + ");\">Редактировать</button>";
+        x += "<button class=\"dropdown-item\" type=\"button\" onclick=\"DeleteTour(" +
+            myObj.tourId +
+            ");\">Удалить</button>";
+        x += "</div>";
+        x += "</div>";
+    }    
     x += "</div>";
 
     x += "</div>";
@@ -702,6 +703,14 @@ function LoadTours() {
     }
     document.getElementById("blogsDiv").innerHTML = x;
     LoadTour(null);
+    if(RoleUser == "admin")
+    {
+        var html = "";
+        html += "<button type=\"button\" class=\"btn btn-primary justify-content-end\" data-toggle=\"modal\" data-target=\"#exampleModal\" onclick=\"LoadTouristDestinations(null);LoadTuorOperator(null);LoadTransports(null);ButtonAdd();\">Добавить тур</button>";
+        document.getElementById("addTourButton").innerHTML = html;
+    }else{
+        document.getElementById("addTourButton").innerHTML = "";
+    }
 }
 
 function СomparingDates(otherDay) {
@@ -714,6 +723,9 @@ function СomparingDates(otherDay) {
         return true
     }
 }
+
+
+
 
 function Login() {
     email = document.getElementById("EmailLogin").value;
@@ -815,20 +827,23 @@ function GetCurrentUser() {
     xmlhttp.open("POST", "/api/Account/isAuthenticated", true);
     xmlhttp.onload = function () {
         AutenXmlHTTP = JSON.parse(xmlhttp.responseText);
-        SetStatus(AutenXmlHTTP.boolen, AutenXmlHTTP.name);
+        SetStatus(AutenXmlHTTP.boolen, AutenXmlHTTP.name, AutenXmlHTTP.role);
+        LoadTours();
     };
     xmlhttp.send();
 }
 var NameUser = null;
-
-function SetStatus(status, name) {
+var RoleUser = null;
+function SetStatus(status, name, role) {
     if (status === false) {
         NameUser = null;
+        RoleUser = null;
         UnLogMenu();
         UnLogDelsCard();
     }
     if (status === true) {
         NameUser = name;
+        RoleUser = role;
         LogMenu(name);
         LogDelsCard(name);
     }
@@ -984,7 +999,11 @@ function LogMenu(name) {
     html += "<img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJeSURBVGhD7drfa45hHMfxx49N1NRSFKUm/8B25sDIgYgIpeYApZxJlJId4IScmTWhlFIK+dVaa0hrObMxP1KM4QglP/IjI7P3tzl6+lj3fT3Xve+l+dTrYPV0P5+7nntd3+u6SxEzDRtxEb14ittoQSP+iazHa/wewxVUI9nsxjBU+XIPcRdd2IbJSCIrkfUmlEuYAtdMxQuognnshWs2QBXL6x2q4JZbUMVCrIJLZuIXVKkQx+CSZVCFQnXCJfaAqkKhBuAS+ymoQqFewSXHoQqFcruRw1CFQj2ASzZDFQrl9rDPRcx/vwfhkoV4D1UqxBG4ZD9UoVB34JLYD/sgXLILqlCofrhkEVShUEfhEpvs7OegSuX1FfPhluX4AFUujx1wzwL8gCqYhdtPSuUmVMksGpBMQpcrfUgqtgnxEqrsWNYguayDKvs3tq+VbM5DlS73HXVINluhipdrR9I5AVW83HUkG3twf0IVVw5hNtwzHfaA25HBPYTu/z7GSazGuO7UL8Y5fIYqVgkb1NpgQ1thWQEbflSB2GyEvoCoC8l5uAr1hUX7hj2YhIpix2VvoL5kPF3GDATF9naHoC7s4RpyHwjNQYw5I7Z9yJVWqAt5+4QaZE6sEbYIS5A5lRxuFm0TMkddIBUT80Zibk7HthaZY7O0uog3G9xsrM4c29mws291MQ9PsAVBsTWWLdG/QF28aB9xFra8j/K+Si2acBrPUNTz8xYdaIaNCvbKVKGxgaoe9l7WTtjxwhnYsttm8Rvogb2vdR/P8ejP392wz5zCAWzHUszC/4ymVBoBFDNEae17I/kAAAAASUVORK5CYII=\" width=\"23px\" height=\"23px\">";
     html += "<span>" + name + "</span>";
     html += "<a class=\"dropdown-item\" href=\"#\">Мой аккаунт</a>";
-    html += "<a id=\"dealsListButton\" class=\"dropdown-item\" href=\"#\" data-toggle=\"modal\" data-target=\"#DealsModal\">Мои записи</a>";
+    if(RoleUser == "admin"){
+        html += "<a id=\"dealsListButton\" class=\"dropdown-item\" href=\"#\" data-toggle=\"modal\" data-target=\"#DealsModal\">Все заявки</a>";
+    }else{
+        html += "<a id=\"dealsListButton\" class=\"dropdown-item\" href=\"#\" data-toggle=\"modal\" data-target=\"#DealsModal\">Мои заявки</a>";
+    }
     html += "<a id=\"login-off\"class=\"dropdown-item\" href=\"#\">Выйти</a>";
     html += "</div>";
     html += "</div>";
@@ -1003,8 +1022,11 @@ function DealsListDraw() {
     deals = JSON.parse(request.responseText);
     var dealsListDivHTML = "";
     for (const i in deals) {
-        if (deals[i].clientId == NameUser) {
+        if(RoleUser == "admin"){
             dealsListDivHTML += "<div class=\"row\">";
+            dealsListDivHTML += "<div class=\"col\">";
+            dealsListDivHTML += deals[i].clientId;
+            dealsListDivHTML += "</div>";
             dealsListDivHTML += "<div class=\"col\">";
             dealsListDivHTML += "<h6>" + deals[i].tour.touristDestination.hotelName + "</h6>";
             dealsListDivHTML += "</div>";
@@ -1023,6 +1045,28 @@ function DealsListDraw() {
             }
             dealsListDivHTML += "</div>";
             dealsListDivHTML += "</div>";
+        }else{
+            if (deals[i].clientId == NameUser) {
+                dealsListDivHTML += "<div class=\"row\">";
+                dealsListDivHTML += "<div class=\"col\">";
+                dealsListDivHTML += "<h6>" + deals[i].tour.touristDestination.hotelName + "</h6>";
+                dealsListDivHTML += "</div>";
+                dealsListDivHTML += "<div class=\"col\">";
+                dealsListDivHTML += deals[i].tour.touristDestination.placeDestination.country + ", " + deals[i].tour.touristDestination.placeDestination.city;
+                dealsListDivHTML += "</div>";
+                dealsListDivHTML += "<div class=\"col\">";
+                dealsListDivHTML += (deals[i].tour.tourCost * 62.0064) + " руб.";
+                dealsListDivHTML += "</div>";
+                dealsListDivHTML += "<div class=\"col\">";
+                if (deals[i].condition.conditionName == "Обработка") {
+                    dealsListDivHTML += "<span class=\"badge badge-info\">" + deals[i].condition.conditionName + "</span>";
+                }
+                if (deals[i].condition.conditionName == "Одобрен") {
+                    dealsListDivHTML += "<span class=\"badge badge-success\">" + deals[i].condition.conditionName + "</span>";
+                }
+                dealsListDivHTML += "</div>";
+                dealsListDivHTML += "</div>";
+            }
         }
     }
     if(dealsListDivHTML == ""){
@@ -1030,4 +1074,4 @@ function DealsListDraw() {
     }
     document.getElementById("dealsListDiv").innerHTML = dealsListDivHTML;
 }
-window.setInterval(LoadTours, 5000);
+window.setInterval(GetCurrentUser, 5000);
